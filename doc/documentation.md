@@ -37,4 +37,11 @@ My observations are  :
 - [Control UI & 3D Objects With Eye Tracking (MRTK 3 Gaze Interactors) ](https://www.youtube.com/watch?v=gWFOw_yb9vY)
 
 
-### Adding eyes-tracking into the project
+## Adding eyes-tracking into the project
+
+### Eye Pointer
+
+EyePointer.cs + prefab Visualizer
+
+#### Tutorial inspirations :
+- [Accessing and recording eye tracking data with MRTK3](https://localjoost.github.io/Accessing-and-recording-eye-tracking-data-with-MRTK3/)
