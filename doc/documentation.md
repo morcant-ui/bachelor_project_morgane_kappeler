@@ -4,8 +4,29 @@ This document has the purpose of presenting the challenges that arose in the pro
 ## Requirements  
 
 ## Migration
+First steps, as usual :
+1. Remove MainCamera
+2. Add MRTK XR Rig & MRTK Input Simulator
 
-not started
+### Task 1
+#### Game Area 
+This is the cube that contains the experiment
+
+1. I added a cube (GameObject - 3D Object) to the scene
+2. I set the position to 0-1.6-4 and scale to 2-2-2 (<span style="color:yellow"> **NOTE:** compare with what Sophie did  !!! </span>)
+3. I changed the material so that it became transparent :
+   1. use material of previous project: `Transparent Material` 
+   2. put it in `MeshRenderer > Material`
+   3. chose shader ``
+4. Add Script `SpawnSphere`
+   1. spawn sphere in cube
+   2. spawn 3 spheres
+   3. spawn sphere with diff colors
+
+
+### TODO
+
+- add le fait de pouvoir bouger le cube au début (setArea, sans sphere inside)
 
 ## Eye-tracking
 
@@ -39,9 +60,13 @@ My observations are  :
 
 ## Adding eyes-tracking into the project
 
-### Eye Pointer
+### Eye Pointer Always Observing
 
 EyePointer.cs + prefab Visualizer
+
+### Eye Pointer Disappearing
+
+Pointer.cs + prefab Visualizer
 
 #### Tutorial inspirations :
 - [Accessing and recording eye tracking data with MRTK3](https://localjoost.github.io/Accessing-and-recording-eye-tracking-data-with-MRTK3/)
