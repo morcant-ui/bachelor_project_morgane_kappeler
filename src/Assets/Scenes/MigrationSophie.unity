@@ -381,7 +381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &740141219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -772,8 +772,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90adb44e17279dc4db8f0fc595f1f52f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineMaterial: {fileID: 2100000, guid: 57abf5acfeed02a488f49f95d8ce9888, type: 2}
-  outlineWidth: 0.007
+  outlineMaterial: {fileID: 2100000, guid: 8747c6241a00370479e539102c77c39f, type: 2}
+  outlineWidth: 0.05
   autoAssignRenderQueue: 1
   useStencilOutline: 0
   stencilWriteMaterial: {fileID: 0}
@@ -882,7 +882,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.6, z: 2}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -901,7 +901,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 2395276251505114007, guid: 9e74a711aa3c6384489d80c03f518176, type: 3}
   gameArea: {fileID: 1508439039}
-  activeSpheres: []
 --- !u!114 &1508439041
 MonoBehaviour:
   m_ObjectHideFlags: 0

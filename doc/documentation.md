@@ -27,6 +27,11 @@ This is the cube that contains the experiment
 ### TODO
 
 - add le fait de pouvoir bouger le cube au début (setArea, sans sphere inside)
+- regarde comme Sophie a fait pr :
+  - les positions de départ 
+  - enregistrer les données (sphères pop, quelle sphère, couleur ect)
+  - les sizes,...
+  - ET EN GROS REPRENDRE TT CA PCQ LE BUT C'EST PAS QUE JE REFASSE TOUT !!!!  
 
 ## Eye-tracking
 
@@ -70,3 +75,7 @@ Pointer.cs + prefab Visualizer
 
 #### Tutorial inspirations :
 - [Accessing and recording eye tracking data with MRTK3](https://localjoost.github.io/Accessing-and-recording-eye-tracking-data-with-MRTK3/)
+
+### TODO
+
+- regarder comment ça marche le eyes-tracking déjà implémenter dans mrtk !!!!

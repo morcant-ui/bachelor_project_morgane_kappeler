@@ -1,18 +1,22 @@
-using Microsoft.MixedReality.GraphicsTools;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PopSphere : MonoBehaviour
 {
     private bool isTouched = false;
     private GameObject sphere;
+    private Material outlineMaterial;
+    private Color originalColor;
 
 
     // Start is called before the first frame update
     void Start()
     {
         sphere = gameObject;
+        outlineMaterial = GetComponent<Renderer>().materials[1];
+        originalColor = outlineMaterial.color;
+        //Debug.Log("Color orignal : " + originalColor);
+        outlineMaterial.color = new Color(0, 0, 0, 0);
     }
 
     // Update is called once per frame
@@ -20,14 +24,12 @@ public class PopSphere : MonoBehaviour
     {
 
         if (isTouched)
-        {
-            sphere.GetComponent<MeshOutline>().OutlineWidth = 0.005f;
+        {            
+            outlineMaterial.color = originalColor;
+            //call method spherePoped from SpawnSphere
+            this.transform.parent.GetComponent<SpawnSphere>().spherePoped(sphere); 
 
-            StartCoroutine(DestroySphere());
-        }
-        else
-        {
-            sphere.GetComponent<MeshOutline>().OutlineWidth = 0f;
+            //StartCoroutine(DestroySphere());
         }
 
     }
@@ -37,10 +39,11 @@ public class PopSphere : MonoBehaviour
         isTouched = true;
     }
 
+    //Not used anymore
     private IEnumerator DestroySphere()
     {
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
 
         Destroy(sphere);
     }
