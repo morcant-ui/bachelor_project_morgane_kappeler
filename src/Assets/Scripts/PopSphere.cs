@@ -3,20 +3,37 @@ using UnityEngine;
 
 public class PopSphere : MonoBehaviour
 {
+    #region Private Fields
     private bool isTouched = false;
     private GameObject sphere;
-    private Material outlineMaterial;
-    private Color originalColor;
+    //private Material outlineMaterial;
+    //private Color originalColor;
+    private Color sphereOriginalColor;
+    private Material sphereMaterial;
+    private Color transparentColor;
+    #endregion
+
+    #region Public Fields
+    public int id;   
+    #endregion
+    public void setIndex(int position) { id = position; }
 
 
     // Start is called before the first frame update
     void Start()
     {
         sphere = gameObject;
-        outlineMaterial = GetComponent<Renderer>().materials[1];
-        originalColor = outlineMaterial.color;
+        //outlineMaterial = GetComponent<Renderer>().materials[1];
+        //originalColor = outlineMaterial.color;
         //Debug.Log("Color orignal : " + originalColor);
-        outlineMaterial.color = new Color(0, 0, 0, 0);
+        //outlineMaterial.color = new Color(0, 0, 0, 0);
+
+        sphereMaterial = this.transform.parent.GetComponent<SpawnSphereSophie>().getMaterial(sphere);
+        sphereOriginalColor = sphereMaterial.color;
+        transparentColor = new Color(sphereOriginalColor.r, sphereOriginalColor.g, sphereOriginalColor.b, 0.3f); // Adjust alpha to make it slightly transparent
+        sphereMaterial.color = transparentColor;
+        Debug.Log("Color orignal : " + sphereOriginalColor);
+        Debug.Log("And transparant color:" + transparentColor);
     }
 
     // Update is called once per frame
@@ -24,12 +41,17 @@ public class PopSphere : MonoBehaviour
     {
 
         if (isTouched)
-        {            
-            outlineMaterial.color = originalColor;
-            //call method spherePoped from SpawnSphere
-            this.transform.parent.GetComponent<SpawnSphere>().spherePoped(sphere); 
+        {
+            sphereMaterial.color = sphereOriginalColor;
 
-            //StartCoroutine(DestroySphere());
+            //outlineMaterial.color = originalColor;
+
+            //call method spherePoped from SpawnSphere
+            //this.transform.parent.GetComponent<SpawnSphere>().spherePoped(sphere); 
+            //call method spherePoped from SpawnSphereSophie
+            this.transform.parent.GetComponent<SpawnSphereSophie>().spherePoped(sphere, id); 
+
+            
         }
 
     }
@@ -38,16 +60,6 @@ public class PopSphere : MonoBehaviour
     {
         isTouched = true;
     }
-
-    //Not used anymore
-    private IEnumerator DestroySphere()
-    {
-
-        yield return new WaitForSeconds(1.5f);
-
-        Destroy(sphere);
-    }
-
 
     public void Decrement()
     {

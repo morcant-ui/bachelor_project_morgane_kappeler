@@ -5,9 +5,10 @@ using UnityEngine;
 ///////////////////////////////
 // TODO
 // 1. pas pouvoir spawn au même endroit qu'avant
-// 2. récupérer données
-// 3. timer
-// 4. counter
+// 2. ajouter coroutine to buildsphere pr allow que sphere spawn pas en même temps/ avant que despawn
+// 3. récupérer données
+// 4. timer
+// 5. counter
 // 
 ///////////////////////////////
 

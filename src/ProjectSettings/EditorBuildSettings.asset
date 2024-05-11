@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/EyeTrackingPointer.unity
     guid: e4ef2135bd6cee84bb16e31507d94101
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Migration.unity
     guid: 8b85d7a91fe2ad548b61fdb9f0871568
+  - enabled: 1
+    path: Assets/Scenes/Migration2_versionSophie.unity
+    guid: fc231b1dac01e814e90e2c12f2635ecb
   m_configObjects:
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: da723da9ce1abf34c990faf7c2eccd04, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: a97f5f66d2962fe499ea6d7a8fcc5c9f, type: 2}
