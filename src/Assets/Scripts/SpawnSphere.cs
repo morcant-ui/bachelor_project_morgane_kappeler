@@ -143,7 +143,8 @@ public class SpawnSphere : MonoBehaviour
     private IEnumerator DestroySphere(GameObject sphere)
     {
 
-        yield return new WaitForSeconds(0.07f);
+        //yield return new WaitForSeconds(0.07f); ORIGINAL
+        yield return new WaitForSeconds(0.09f);
 
         Destroy(sphere);
     }
