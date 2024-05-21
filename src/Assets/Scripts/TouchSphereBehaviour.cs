@@ -21,7 +21,7 @@ public class TouchSphereBehaviour : MonoBehaviour
         sphereMaterial = GetComponent<Renderer>().material;
         sphereOriginalColor = sphereMaterial.color;
         transparentColor = new Color(sphereOriginalColor.r, sphereOriginalColor.g, sphereOriginalColor.b, 0.3f); // Adjust alpha to make it slightly transparent
-        print("transparentColor origin" + transparentColor);
+        //print("transparentColor origin" + transparentColor);
 
         //Debug.Log("Color orignal : " + sphereOriginalColor);
         //Debug.Log("And transparant color:" + transparentColor);
@@ -33,7 +33,7 @@ public class TouchSphereBehaviour : MonoBehaviour
     {
         float sliderValue = SliderTransparency.oldSliderValue;
         transparentColor = new Color(sphereOriginalColor.r, sphereOriginalColor.g, sphereOriginalColor.b, sliderValue);
-        print("transparent color updated" + transparentColor);
+        //print("transparent color updated" + transparentColor);
         if (isTouched)
         {
             //Debug.Log("original color up!");
