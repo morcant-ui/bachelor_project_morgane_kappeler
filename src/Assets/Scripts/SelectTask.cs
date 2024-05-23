@@ -1,18 +1,41 @@
+using Photon.Pun;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SelectTask : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    // Used to launch Task 1 or 2 for all the players (called by master client)
+    public void T1Start()
     {
-        
+        if (PhotonNetwork.IsMasterClient)
+        {
+            this.transform.GetChild(0).gameObject.SetActive(false); //the buttons to select
+            //GameObject.Find("Canvas").transform.GetChild(0).gameObject.SetActive(true); //loading mess of startscene -> No Need?
+            StartCoroutine(wait1());
+        }
+    }
+    public void T2Start()
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            this.transform.GetChild(0).gameObject.SetActive(false);
+            //GameObject.Find("Canvas").transform.GetChild(0).gameObject.SetActive(true); //No need?
+            StartCoroutine(wait2());
+        }
+
     }
 
-    // Update is called once per frame
-    void Update()
+    // avoid pokePointerUp exception
+    IEnumerator wait1()
     {
-        
+        yield return new WaitForSeconds(1);
+        PhotonNetwork.LoadLevel("Migration");
+    }
+
+    IEnumerator wait2()
+    {
+        yield return new WaitForSeconds(1);
+        PhotonNetwork.LoadLevel("Migration");
     }
 }
+

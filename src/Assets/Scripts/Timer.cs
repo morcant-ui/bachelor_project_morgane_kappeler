@@ -1,6 +1,6 @@
 using UnityEngine;
 using Photon.Pun;
-//using holoutils;
+using holoutils;
 using System;
 using System.Collections;
 
@@ -8,7 +8,7 @@ public class Timer : MonoBehaviour
 {
 
     [SerializeField]
-    GameObject area;
+    GameObject gameArea;
 
     [SerializeField]
     GameObject endPannel;
@@ -74,10 +74,10 @@ public class Timer : MonoBehaviour
                 timerIsRunning = false;
 
                 // diables the area, gets the number of popped spheres
-                area.SetActive(false);
+                gameArea.SetActive(false);
 
                 // sets the position of the end display to the previous position of the area
-                endPannel.transform.position = area.transform.position;
+                endPannel.transform.position = gameArea.transform.position;
 
                 // to wait for last bubble to be popped properly
                 StartCoroutine(waiter());
@@ -99,22 +99,22 @@ public class Timer : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         // diplays end text and set the endDisplay active
-        int popCounter = area.GetComponent<SpawnSphereSophie>().popCounter;
+        int popCounter = gameArea.GetComponent<SpawnSphereInterface>().popCounter;
         endPannel.transform.GetChild(1).transform.Find("Text").GetComponent<TMPro.TextMeshProUGUI>().text = "Congratulations!\n\nGiven time: " + totalTime / 60 + " minutes\n\nScore: " + popCounter + " spheres popped\n";
         endPannel.SetActive(true);
         this.GetComponent<AudioSource>().Play();
 
         // the master also stores the data in a CSV file on the headset (under Documents, CSVLogger)
-        //if (PhotonNetwork.IsMasterClient)
-        //{
-        //    Debug.Log("Master makes a csv");
-        //    // saves data
-        //    logger.FlushData();
+        if (PhotonNetwork.IsMasterClient)
+        {
+            Debug.Log("Master makes a csv");
+            // saves data
+            logger.FlushData();
             // clears data variable used to store data in the Create Spheres script
-        //    area.GetComponent<CreateSpheres>().data.Clear();
+            gameArea.GetComponent<SpawnSphereInterface>().data.Clear();
             // if we want to restart game
-        //    restart.SetActive(true);
-        //}
+            restart.SetActive(true);
+        }
     }
 
 }

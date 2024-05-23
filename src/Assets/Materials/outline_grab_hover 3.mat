@@ -23,7 +23,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2999
+  m_CustomRenderQueue: 1999
   stringTagMap:
     DisableBatching: true
     RenderType: Fade
@@ -157,7 +157,7 @@ Material:
     - _BlurBackgroundRect: {r: 0, g: 0, b: 1, a: 1}
     - _BorderColor: {r: 1, g: 1, b: 1, a: 0}
     - _ClippingBorderColor: {r: 1, g: 0.2, b: 0, a: 1}
-    - _Color: {r: 0.113905564, g: 0.9308176, b: 0.020489542, a: 0.000028919203}
+    - _Color: {r: 0.2141419, g: 0.98742133, b: 0.052786604, a: 0}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
     - _EnvironmentColorX: {r: 1, g: 0, b: 0, a: 1}
     - _EnvironmentColorY: {r: 0, g: 1, b: 0, a: 1}

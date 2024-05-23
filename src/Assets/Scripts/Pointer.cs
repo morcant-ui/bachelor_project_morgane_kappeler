@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using MixedReality.Toolkit.Input;
 using UnityEngine;
 
@@ -18,6 +16,9 @@ public class Pointer : MonoBehaviour
     private GameObject objectOfInterest;
 
     private bool isWatching = false;
+
+
+    private const float hitPointOffset = 0.01f; //NEW
 
     // Start is called before the first frame update
     void Start()
@@ -39,12 +40,27 @@ public class Pointer : MonoBehaviour
                     if (hitPointDisplayer != null)
                     {
                         hitPointDisplayer.SetActive(true); // Activate the pointer if it's not already active
-                        hitPointDisplayer.transform.position = hit.point;
+
+                        // Adjust the position slightly in front of the hit point to avoid penetration
+                        Vector3 offsetPosition = hit.point + hit.normal * hitPointOffset; //NEW
+                        hitPointDisplayer.transform.position = offsetPosition; //NEW
+
+                        // Make the crosshair face the camera
+                        hitPointDisplayer.transform.LookAt(Camera.main.transform); //NEW
+                        hitPointDisplayer.transform.Rotate(0, 180, 0); // Inverse to face the camera properly NEW
+
+                        //hitPointDisplayer.transform.position = hit.point; OLD THING WAS NOT COMMENTED!
                     }
                     else
                     {
+
+                        // Adjust the position slightly in front of the hit point to avoid penetration
+                        Vector3 offsetPosition = hit.point + hit.normal * hitPointOffset; //NEW
+
                         // Instantiate the hit point displayer if it hasn't been instantiated yet
                         hitPointDisplayer = Instantiate(hitPointDisplayPrefab, hit.point, Quaternion.identity);
+
+                        hitPointDisplayer.transform.position = offsetPosition; //NEW
                     }
                 }
                 else
