@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MixedReality.Toolkit.SpatialManipulation;
 using Microsoft.MixedReality.GraphicsTools;
+using UnityEngine.UIElements;
 
 
 public class SpawnSphere : SpawnSphereInterface
@@ -96,8 +97,6 @@ public class SpawnSphere : SpawnSphereInterface
 
     void makeSphere(int prevPos)
     {
-        //Debug.Log("yooooooooooooooooooooooooooooooooooooooooooooo");
-
         //find random position in 27 position possibles
         int pos = Random.Range(0, nbrSpawnPoint);
         while (spheresArray[pos].activeSelf || prevPos == pos)
@@ -193,21 +192,6 @@ public class SpawnSphere : SpawnSphereInterface
         }
     }
 
-    //void RandomColor(Material spawnMat) //Not needed I think
-    //{
-    //    int rand = Random.Range(0, colors.Length);
-    //    spawnMat.color = colors[rand].color;
-
-    //}
-
-    //private IEnumerator DestroySphere(GameObject sphere) //Not needed I think
-    //{
-
-    //    yield return new WaitForSeconds(0.07f);
-
-    //    Destroy(sphere);
-    //}
-
     #endregion
 
     #region Public methods
@@ -270,17 +254,6 @@ public class SpawnSphere : SpawnSphereInterface
         logger.AddRow(data);
         time = popTime;
         data.Clear();
-
-
-        //// remove popped sphere from activeSpheres list
-        //activeSpheres.Remove(sphere);
-        //// destroy the popped sphere
-        //StartCoroutine(DestroySphere(sphere)); //mine
-        //// creates a random new sphere
-        //if (activeSpheres.Count < nbrObjectToSpawn)
-        //{
-        //    MakeSphere(id);
-        //}
     }
 
     // converts the global scales for the spheres to local scales
@@ -325,32 +298,29 @@ public class SpawnSphere : SpawnSphereInterface
     [PunRPC]
     public override void deActivateSphere(int id)
     {
-        spheresArray[id].SetActive(false);
+        spheresArray[id].SetActive(false);       
     }
 
     [PunRPC]
     public void clientTouched(int id, float amountToDecrease)
     {
-        Debug.Log("Ok, client touched");
-        
+        //Debug.Log("Ok, client touched");
         Material sphereMaterial = spheresArray[id].GetComponent<Renderer>().material;
-        Debug.Log("sphere material of touched client before is " + sphereMaterial + " with color " + sphereMaterial.color);
+        //Debug.Log("sphere material of touched client before is " + sphereMaterial + " with color " + sphereMaterial.color);
         Color originalColor = originalColors[id];
         sphereMaterial.color = new Color(originalColor.r - amountToDecrease, originalColor.g - amountToDecrease, originalColor.b - amountToDecrease, 255f);
-        Debug.Log("sphere material of touched client after is " + sphereMaterial + " with color " + sphereMaterial.color);
+        //Debug.Log("sphere material of touched client after is " + sphereMaterial + " with color " + sphereMaterial.color);
     }
 
     [PunRPC]
     public void clientUntouched(int id)
     {
         //TODO take out parameter amountToIncrease if it works
-        Debug.Log("OK, client untouched");
+        //Debug.Log("OK, client untouched");
         Material sphereMaterial = spheresArray[id].GetComponent<Renderer>().material;
-        Debug.Log("sphere material of UNtouched client before is " + sphereMaterial + " with color " + sphereMaterial.color);
-        //Color originalColor = sphereMaterial.color;
-        //sphereMaterial.color = new Color(originalColor.r + amountToIncrease, originalColor.g + amountToIncrease, originalColor.b + amountToIncrease, 255);
+        //Debug.Log("sphere material of UNtouched client before is " + sphereMaterial + " with color " + sphereMaterial.color);
         sphereMaterial.color = originalColors[id];
-        Debug.Log("sphere material of UNtouched client after is " + sphereMaterial + " with color " + sphereMaterial.color);
+        //Debug.Log("sphere material of UNtouched client after is " + sphereMaterial + " with color " + sphereMaterial.color);
     }
 
     #endregion

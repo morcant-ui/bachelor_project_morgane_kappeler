@@ -40,6 +40,7 @@ public class Timer : MonoBehaviour
         // gets the text object for displaying the time left and displays the time
         timeText = GameObject.Find("TimeText").GetComponent<TMPro.TextMeshProUGUI>();
         this.DisplayTime(timeRemaining);
+        Debug.Log("Hello ME is timer, I started the time");
 
         // stores the logger component in a variable for later usage
         logger = this.GetComponent<CSVLogger>();
@@ -64,7 +65,7 @@ public class Timer : MonoBehaviour
                 timeRemaining -= Time.deltaTime;
                 if (timeRemaining < 0) { timeRemaining = 0; }
                 this.DisplayTime(timeRemaining);
-
+                //Debug.Log("Hello, me is timer again, you still have " + timeRemaining);
             }
             // when the time is over -> fix remaining time to 0 and display it, set the timeIsRunning to false to stop the updates
             else

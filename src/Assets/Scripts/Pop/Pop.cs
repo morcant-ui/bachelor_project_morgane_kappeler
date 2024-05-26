@@ -4,14 +4,8 @@ using UnityEngine;
 public abstract class Pop : MonoBehaviour
 {
     #region Private Fields
-    private bool isTouched = false;
-    private GameObject sphere;
-
-    private Color sphereOriginalColor;
-    private Color sphereTouchedColor;
-    private Material sphereMaterial;
-    private Color clientSphereMaterialColor;
     private float amountToDecrease = 0.5f;
+    private bool isTouched = false; 
     #endregion
 
     #region Public Fields
@@ -19,6 +13,7 @@ public abstract class Pop : MonoBehaviour
 
     public bool myFlag = false;
     public bool otherFlag = false;
+  
     // checks that both players agree that the sphere is ready to pop
     public int readyCount = 0;
     #endregion
@@ -33,72 +28,31 @@ public abstract class Pop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("JUST ENTERED THE POP BIOME :)");
-        //sphere = gameObject;
-
-        //if (PhotonNetwork.IsMasterClient)
-        //{
-        //    sphereMaterial = this.transform.parent.GetComponent<SpawnSphere>().getMaterial(id);
-        //    Debug.Log("Here in POP, the matos I got is:" + sphereMaterial);
-        //    sphereOriginalColor = sphereMaterial.color;
-        //    sphereTouchedColor = new Color(sphereOriginalColor.r - amountToDecrease, sphereOriginalColor.g - amountToDecrease, sphereOriginalColor.b - amountToDecrease, 255f); // Adjust colors to make them a bit more dark
-        //}
+        //probably can delete, we'll see how it goes
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (sphereOriginalColor != null)
+        if (isTouched)
         {
-
-            if (isTouched)
-            {
-                //if (PhotonNetwork.IsMasterClient)
-                //{
-                //    Debug.Log("Master touched something");
-                //    touchTime = GameObject.Find("Timer").GetComponent<Timer>().timeRemaining;
-                //    sphereMaterial.color = sphereTouchedColor;
-                //    this.GetComponent<PhotonView>().RPC("dualTouch", RpcTarget.All, touchTime);
-                //}
-                //else
-                //{
-                Debug.Log("Client touched something");
-                touchTime = GameObject.Find("Timer").GetComponent<Timer>().timeRemaining;
-                this.transform.parent.GetComponent<SpawnSphere>().GetComponent<PhotonView>().RPC("clientTouched", PhotonNetwork.LocalPlayer, id, amountToDecrease);
-                this.GetComponent<PhotonView>().RPC("dualTouch", RpcTarget.All, touchTime);
-
-                //}
-
-            }
-            else
-            {
-                //if (PhotonNetwork.IsMasterClient)
-                //{
-                //    sphereMaterial.color = sphereOriginalColor;
-                //    this.GetComponent<PhotonView>().RPC("unTouch", RpcTarget.Others);
-                //}
-                //else
-                //{
-                this.transform.parent.GetComponent<SpawnSphere>().GetComponent<PhotonView>().RPC("clientUntouched", PhotonNetwork.LocalPlayer, id);
-                this.GetComponent<PhotonView>().RPC("unTouch", RpcTarget.Others);
-                //}
-            }
+            //will be the animated outline
         }
-        else
-        {
-            Debug.Log("Sorry, me not ready because I can't get a material!!");
-        }
-
     }
 
     public void Increment()
     {
         isTouched = true;
+        touchTime = GameObject.Find("Timer").GetComponent<Timer>().timeRemaining;
+        this.transform.parent.GetComponent<SpawnSphere>().GetComponent<PhotonView>().RPC("clientTouched", PhotonNetwork.LocalPlayer, id, amountToDecrease);
+        this.GetComponent<PhotonView>().RPC("dualTouch", RpcTarget.All, touchTime);
     }
 
     public void Decrement()
     {
         isTouched = false;
+        this.transform.parent.GetComponent<SpawnSphere>().GetComponent<PhotonView>().RPC("clientUntouched", PhotonNetwork.LocalPlayer, id);
+        this.GetComponent<PhotonView>().RPC("unTouch", RpcTarget.All);
     }
 
     #region PUN Related Methods
@@ -121,12 +75,6 @@ public abstract class Pop : MonoBehaviour
         {
             otherFlag = false;
         }
-    }
-
-    [PunRPC]
-    public void getClientMaterialColor(int  id, float colorR, float colorG, float colorB)
-    {
-        //clientSphereMaterialColor = gameObject.
     }
     #endregion
 }
