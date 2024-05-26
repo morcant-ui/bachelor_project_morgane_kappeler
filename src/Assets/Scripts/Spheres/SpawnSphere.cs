@@ -32,6 +32,7 @@ public class SpawnSphere : SpawnSphereInterface
     private Vector3[] spherePositions;
     private Vector3[] sizes = new Vector3[3];
     private GameObject[] spheresArray = new GameObject[nbrSpawnPoint];
+    private Color[] originalColors = new Color[nbrSpawnPoint];
     private GameObject currentNewSphere;
     private Renderer sphereRenderer;
     #endregion
@@ -115,6 +116,9 @@ public class SpawnSphere : SpawnSphereInterface
 
         //ranfom color
         int color = Random.Range(0, colors.Length);
+
+        //keep material into memory for master
+        //currentNewSphere.GetComponent<Pop>().getMaterial(colors[color]);
 
         // updates the new sphere to all clients
         gameArea.GetComponent<PhotonView>().RPC("newSphere", RpcTarget.All, pos, color, size);
@@ -208,11 +212,11 @@ public class SpawnSphere : SpawnSphereInterface
 
     #region Public methods
 
-    public Material getMaterial(GameObject sphere)
+    public Material getMaterial(int sphereID)
     {
         foreach (GameObject activeSphere in activeSpheres)
         {
-            if (activeSphere == sphere)
+            if (activeSphere == spheresArray[sphereID])
             {
                 // If the current activeSphere is equal to the given sphere, return its material
                 Renderer renderer = activeSphere.GetComponent<Renderer>();
@@ -298,9 +302,11 @@ public class SpawnSphere : SpawnSphereInterface
         spheresArray[sPos].transform.localScale = sizes[sSize];
         sphereRenderer = spheresArray[sPos].GetComponent<Renderer>();
         sphereRenderer.material = colors[sColor];
+        originalColors[sPos] = colors[sColor].color;
         spheresArray[sPos].GetComponent<Pop>().readyCount = 0;
         spheresArray[sPos].GetComponent<Pop>().myFlag = false;
         spheresArray[sPos].GetComponent<Pop>().otherFlag = false;
+        Debug.Log("END of asking for spawn, this should be here " + sPos + " gives us " + spheresArray[sPos]);
 
     }
 
@@ -320,6 +326,31 @@ public class SpawnSphere : SpawnSphereInterface
     public override void deActivateSphere(int id)
     {
         spheresArray[id].SetActive(false);
+    }
+
+    [PunRPC]
+    public void clientTouched(int id, float amountToDecrease)
+    {
+        Debug.Log("Ok, client touched");
+        
+        Material sphereMaterial = spheresArray[id].GetComponent<Renderer>().material;
+        Debug.Log("sphere material of touched client before is " + sphereMaterial + " with color " + sphereMaterial.color);
+        Color originalColor = originalColors[id];
+        sphereMaterial.color = new Color(originalColor.r - amountToDecrease, originalColor.g - amountToDecrease, originalColor.b - amountToDecrease, 255f);
+        Debug.Log("sphere material of touched client after is " + sphereMaterial + " with color " + sphereMaterial.color);
+    }
+
+    [PunRPC]
+    public void clientUntouched(int id)
+    {
+        //TODO take out parameter amountToIncrease if it works
+        Debug.Log("OK, client untouched");
+        Material sphereMaterial = spheresArray[id].GetComponent<Renderer>().material;
+        Debug.Log("sphere material of UNtouched client before is " + sphereMaterial + " with color " + sphereMaterial.color);
+        //Color originalColor = sphereMaterial.color;
+        //sphereMaterial.color = new Color(originalColor.r + amountToIncrease, originalColor.g + amountToIncrease, originalColor.b + amountToIncrease, 255);
+        sphereMaterial.color = originalColors[id];
+        Debug.Log("sphere material of UNtouched client after is " + sphereMaterial + " with color " + sphereMaterial.color);
     }
 
     #endregion

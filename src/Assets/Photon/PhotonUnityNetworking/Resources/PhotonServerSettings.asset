@@ -57,6 +57,11 @@ MonoBehaviour:
   - startCount
   - unfixArea
   - updateValues
+  - getClientMaterial
+  - clientTouched
+  - clientUntouched
+  - clientUntouch
+  - getClientMaterialColor
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
