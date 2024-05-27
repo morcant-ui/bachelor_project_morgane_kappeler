@@ -12,14 +12,14 @@ public class SetArea : MonoBehaviour
 
     public void Start()
     {
-        
+
         if (!PhotonNetwork.IsMasterClient)
         {
             this.gameObject.SetActive(false);
         }
         else
         {
-            GameObject.Find("CanvasLoading").SetActive(false);//NEW
+            GameObject.Find("CanvasLoading").SetActive(false);//deactivate loading mess for master
         }
     }
 

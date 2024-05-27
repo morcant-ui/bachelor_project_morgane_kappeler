@@ -6,6 +6,10 @@ using UnityEngine;
 using MixedReality.Toolkit.SpatialManipulation;
 using Microsoft.MixedReality.GraphicsTools;
 using UnityEngine.UIElements;
+using MixedReality.Toolkit.Examples;
+using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
+using MixedReality.Toolkit.Input;
 
 
 public class SpawnSphere : SpawnSphereInterface
@@ -25,6 +29,23 @@ public class SpawnSphere : SpawnSphereInterface
     private static int nbrObjectToSpawn = 3;
     [SerializeField]
     private static int nbrSpawnPoint = 27;
+
+
+    [SerializeField]
+    private GameObject idleCursorPrefab;
+    [SerializeField]
+    private float defaultDistanceInMeters = 2f;
+    [SerializeField]
+    private Color idleStateColor;
+    [SerializeField]
+    private Color hightlightStateColor;
+    [SerializeField]
+    private ActionBasedController gazeController;
+    [SerializeField]
+    private InputActionProperty _gazeTranslationAction;
+
+    [SerializeField]
+    private GazeInteractor gazeInteractorCursorOnObject;
     #endregion
 
     #region Private Fields
@@ -36,12 +57,35 @@ public class SpawnSphere : SpawnSphereInterface
     private Color[] originalColors = new Color[nbrSpawnPoint];
     private GameObject currentNewSphere;
     private Renderer sphereRenderer;
+    private bool config;
+    #endregion
+
+    #region Getter
+    #region Getter
+    public GameObject IdleCursorPrefab{get { return idleCursorPrefab; }}
+
+    public float DefaultDistanceInMeters { get { return defaultDistanceInMeters; } }
+
+    public Color IdleStateColor { get { return idleStateColor; }}   
+
+    public Color HightlightStateColor { get { return hightlightStateColor; }}
+
+    public ActionBasedController ActionBasedController { get { return gazeController; }}    
+
+    public InputActionProperty InputActionProperty { get { return _gazeTranslationAction;}}
+
+    public bool Config { get { return config; }}
+
+    #endregion
+
     #endregion
 
     // Start is called before the first frame update
     void Start()
     {
-        //Initialisation 
+        
+
+        //Initialisation of spheres logic
 
         popCounter = 0;
 
@@ -68,8 +112,6 @@ public class SpawnSphere : SpawnSphereInterface
         gameArea.GetComponent<AudioSource>().clip = Resources.Load<AudioClip>("blub");
         gameArea.GetComponent<AudioSource>().volume = 0.007f;
 
-        //build initial sphere
-        //startGame();
     }
 
     // Update is called once per frame
@@ -82,14 +124,20 @@ public class SpawnSphere : SpawnSphereInterface
 
     public override void startGame()
     {
+        if(!PhotonNetwork.IsMasterClient) { GameObject.Find("CanvasLoading").SetActive(false); } //deactivate Loading message for other players
         gameArea.GetComponent<PhotonView>().RPC("startCount", RpcTarget.All);
+        
 
         // create sphereNumber spheres (here 3)
         for (int i = 0; i < nbrObjectToSpawn; i++)
         {
             makeSphere(-1);
         }
-
+        //initialise idleCursor
+        if (SceneConfig.useVisualizations)
+        {
+            this.transform.GetChild(0).GetComponent<Pop>().GetComponent<PhotonView>().RPC("updateConfig", RpcTarget.All);
+        }
         time = Time.realtimeSinceStartup;
         logger.StartNewCSV(1);
         GameObject.Find("Timer").GetComponent<PhotonView>().RPC("startTimer", RpcTarget.All);
@@ -115,9 +163,6 @@ public class SpawnSphere : SpawnSphereInterface
 
         //ranfom color
         int color = Random.Range(0, colors.Length);
-
-        //keep material into memory for master
-        //currentNewSphere.GetComponent<Pop>().getMaterial(colors[color]);
 
         // updates the new sphere to all clients
         gameArea.GetComponent<PhotonView>().RPC("newSphere", RpcTarget.All, pos, color, size);
@@ -189,6 +234,9 @@ public class SpawnSphere : SpawnSphereInterface
 
             //keep the position in memory to check future spawning 
             newSphere.GetComponent<PopSphere>().setIndex(pos);
+
+            //add gaze interactor to cursor on object
+            
         }
     }
 
@@ -269,7 +317,6 @@ public class SpawnSphere : SpawnSphereInterface
     [PunRPC]
     public override void newSphere(int sPos, int sColor, int sSize)
     {
-        Debug.Log("I'm asking the clients to spawn the new sphere!");
         // updates SetActive, size, color 
         spheresArray[sPos].SetActive(true);
         spheresArray[sPos].transform.localScale = sizes[sSize];
@@ -279,8 +326,15 @@ public class SpawnSphere : SpawnSphereInterface
         spheresArray[sPos].GetComponent<Pop>().readyCount = 0;
         spheresArray[sPos].GetComponent<Pop>().myFlag = false;
         spheresArray[sPos].GetComponent<Pop>().otherFlag = false;
-        Debug.Log("END of asking for spawn, this should be here " + sPos + " gives us " + spheresArray[sPos]);
-
+        if (SceneConfig.useVisualizations)
+        {
+            spheresArray[sPos].GetComponent<Pointer>().enabled = true;
+            spheresArray[sPos].GetComponent<Pointer>().gazeInteractor = gazeInteractorCursorOnObject;
+        }
+        else
+        {
+            spheresArray[sPos].GetComponent<Pointer>().enabled = false;
+        }
     }
 
     [PunRPC]
@@ -304,23 +358,16 @@ public class SpawnSphere : SpawnSphereInterface
     [PunRPC]
     public void clientTouched(int id, float amountToDecrease)
     {
-        //Debug.Log("Ok, client touched");
         Material sphereMaterial = spheresArray[id].GetComponent<Renderer>().material;
-        //Debug.Log("sphere material of touched client before is " + sphereMaterial + " with color " + sphereMaterial.color);
         Color originalColor = originalColors[id];
         sphereMaterial.color = new Color(originalColor.r - amountToDecrease, originalColor.g - amountToDecrease, originalColor.b - amountToDecrease, 255f);
-        //Debug.Log("sphere material of touched client after is " + sphereMaterial + " with color " + sphereMaterial.color);
     }
 
     [PunRPC]
     public void clientUntouched(int id)
     {
-        //TODO take out parameter amountToIncrease if it works
-        //Debug.Log("OK, client untouched");
         Material sphereMaterial = spheresArray[id].GetComponent<Renderer>().material;
-        //Debug.Log("sphere material of UNtouched client before is " + sphereMaterial + " with color " + sphereMaterial.color);
         sphereMaterial.color = originalColors[id];
-        //Debug.Log("sphere material of UNtouched client after is " + sphereMaterial + " with color " + sphereMaterial.color);
     }
 
     #endregion

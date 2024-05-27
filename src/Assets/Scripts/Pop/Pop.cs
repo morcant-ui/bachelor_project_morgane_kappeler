@@ -1,5 +1,6 @@
 using Photon.Pun;
 using UnityEngine;
+using MixedReality.Toolkit.Examples; //for script IdlePointer
 
 public abstract class Pop : MonoBehaviour
 {
@@ -28,9 +29,9 @@ public abstract class Pop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //probably can delete, we'll see how it goes
+       //not sure I'll be using it we'll see
     }
-
+       
     // Update is called once per frame
     void Update()
     {
@@ -75,6 +76,19 @@ public abstract class Pop : MonoBehaviour
         {
             otherFlag = false;
         }
+    }
+
+    [PunRPC]
+    public void updateConfig() {       
+        Debug.Log("Task 2 configuration");
+        GameObject idleCursorPrefab = this.transform.parent.GetComponent<SpawnSphere>().IdleCursorPrefab;
+        GameObject idleCrosshair = Instantiate(idleCursorPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        idleCrosshair.AddComponent<IdlePointer>();
+        idleCrosshair.GetComponent<IdlePointer>().defaultDistanceInMeters = this.transform.parent.GetComponent<SpawnSphere>().DefaultDistanceInMeters;
+        idleCrosshair.GetComponent<IdlePointer>().idleStateColor = this.transform.parent.GetComponent<SpawnSphere>().IdleStateColor;
+        idleCrosshair.GetComponent<IdlePointer>().hightlightStateColor = this.transform.parent.GetComponent<SpawnSphere>().HightlightStateColor;
+        idleCrosshair.GetComponent<IdlePointer>().gazeController = this.transform.parent.GetComponent<SpawnSphere>().ActionBasedController;
+        idleCrosshair.GetComponent<IdlePointer>()._gazeTranslationAction = this.transform.parent.GetComponent<SpawnSphere>().InputActionProperty;
     }
     #endregion
 }

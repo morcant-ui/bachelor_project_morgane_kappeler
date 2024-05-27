@@ -1,18 +1,95 @@
-using System.Collections;
+// Copyright (c) Mixed Reality Toolkit Contributors
+// Licensed under the BSD 3-Clause
+
+using global::Unity.XR.CoreUtils;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Inputs;
 
-public class IdlePointer : MonoBehaviour
+namespace MixedReality.Toolkit.Examples
 {
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// Sample for allowing the game object that this script is attached to follow the user's eye gaze
+    /// at a given distance of <see cref="defaultDistanceInMeters"/>. 
+    /// </summary>
+    [AddComponentMenu("Scripts/MRTK/Examples/FollowEyeGaze")]
+    public class IdlePointer : MonoBehaviour
     {
-        
-    }
+        [Tooltip("Display the game object along the eye gaze ray at a default distance (in meters).")]
+        //[SerializeField]
+        public float defaultDistanceInMeters = 2f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        [Tooltip("The default color of the GameObject.")]
+        //[SerializeField]
+        public Color idleStateColor;
+
+        [Tooltip("The highlight color of the GameObject when hovered over another StatefulInteractable.")]
+        //[SerializeField]
+        public Color hightlightStateColor;
+
+        private Material material;
+
+        //[SerializeField]
+        public ActionBasedController gazeController;
+
+        //[SerializeField]
+        public InputActionProperty _gazeTranslationAction;
+
+        private IGazeInteractor gazeInteractor;
+        private List<IXRInteractable> targets;
+
+        private void Start()
+        {
+            material = GetComponent<Renderer>().material;
+
+            gazeInteractor = gazeController.GetComponentInChildren<IGazeInteractor>();
+
+            targets = new List<IXRInteractable>();
+            //Debug.Log("targetss" + targets + "end target");
+        }
+
+        private void OnEnable()
+        {
+            if (_gazeTranslationAction == null || _gazeTranslationAction.action == null)
+            {
+                return;
+            }
+
+            _gazeTranslationAction.action.performed += FollowEyeGazeAction;
+            _gazeTranslationAction.EnableDirectAction();
+        }
+
+        private void OnDisable()
+        {
+            if (_gazeTranslationAction == null || _gazeTranslationAction.action == null)
+            {
+                return;
+            }
+
+            _gazeTranslationAction.DisableDirectAction();
+            _gazeTranslationAction.action.performed -= FollowEyeGazeAction;
+        }
+
+        private void Update()
+        {
+            //Debug.Log("me is updating!");
+            targets.Clear();
+
+            gazeInteractor.GetValidTargets(targets);
+            material.color = targets.Count > 0 ? hightlightStateColor : idleStateColor;
+            //Debug.Log("material color is ?"+material.color);
+            // Note: A better workflow would be to create and attach a prefab to the MRTK Gaze Controller object.
+            // Doing this will parent the cursor to the gaze controller transform and be updated automatically.
+            var pose = gazeController.transform.GetWorldPose();
+            transform.position = pose.position + gazeController.transform.forward * defaultDistanceInMeters;
+        }
+
+        private void FollowEyeGazeAction(InputAction.CallbackContext obj)
+        {
+            // Example of obtaining gaze input action properties
+            Vector3 translation = _gazeTranslationAction.action.ReadValue<Vector3>();
+        }
     }
 }

@@ -52,10 +52,11 @@ public class Launcher : MonoBehaviourPunCallbacks
             if (PhotonNetwork.IsMasterClient)
             {
                 //Debug.Log("I should remove loading!!");
-                GameObject.Find("Canvas").SetActive(false);//NEW
+                //GameObject.Find("Canvas").SetActive(false);//NEW
                 //Debug.Log("I should add TaskSelector!!");
                 GameObject.Find("TaskSelectorScript").transform.GetChild(0).gameObject.SetActive(true);
             }
+            GameObject.Find("Canvas").SetActive(false);
         }
     }
 
@@ -130,10 +131,11 @@ public class Launcher : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient)
         {
             //Debug.Log("I should remove loading!!");
-            GameObject.Find("Canvas").SetActive(false);//NEW
+            //GameObject.Find("Canvas").SetActive(false);//NEW
             //Debug.Log("I should add TaskSelector!!");
             GameObject.Find("TaskSelectorScript").transform.GetChild(0).gameObject.SetActive(true);
         }
+        GameObject.Find("Canvas").SetActive(false);//NEW
     }
 
     #endregion

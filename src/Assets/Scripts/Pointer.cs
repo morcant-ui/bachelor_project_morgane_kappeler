@@ -4,8 +4,8 @@ using UnityEngine;
 public class Pointer : MonoBehaviour
 {
 
-    [SerializeField]
-    private GazeInteractor gazeInteractor;
+    //[SerializeField]
+    public GazeInteractor gazeInteractor;
 
     [SerializeField]
     private GameObject hitPointDisplayPrefab;

@@ -662,6 +662,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1638493385712066549, guid: 6d9de61fb240c4d45889b858ecb6cd9c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1638493385712066550, guid: 6d9de61fb240c4d45889b858ecb6cd9c, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.3
@@ -1338,7 +1342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5572466351762964349, guid: c25d8f2d22117bd40ad824684551fbde, type: 3}
       propertyPath: isGrabSelected.onEntered.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: T1Start
+      value: T2Start
       objectReference: {fileID: 0}
     - target: {fileID: 5572466351762964349, guid: c25d8f2d22117bd40ad824684551fbde, type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -1354,7 +1358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5572466351762964349, guid: c25d8f2d22117bd40ad824684551fbde, type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: T1Start
+      value: T2Start
       objectReference: {fileID: 0}
     - target: {fileID: 5572466351762964349, guid: c25d8f2d22117bd40ad824684551fbde, type: 3}
       propertyPath: isGrabSelected.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

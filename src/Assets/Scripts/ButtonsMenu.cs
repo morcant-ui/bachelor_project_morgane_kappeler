@@ -25,6 +25,7 @@ public class ButtonsMenu : MonoBehaviour
     {
         gameArea.GetComponent<SpawnSphereInterface>().startGame();
         this.gameObject.SetActive(false);
+        
     }
 
     //public void startDemo()

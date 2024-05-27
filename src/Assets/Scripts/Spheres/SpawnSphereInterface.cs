@@ -88,7 +88,6 @@ public abstract class SpawnSphereInterface : MonoBehaviour
     public void updateValues()
     {
         popCounter++;
-        Debug.Log("Pop counter should do +1");
         popText.text = popCounter.ToString();
     }
 

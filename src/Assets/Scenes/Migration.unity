@@ -616,24 +616,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1960850289780299974, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7015659}
-    - targetCorrespondingSourceObject: {fileID: 7776007856328844323, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 3776204231346187231, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 7776007855563873074, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 3776204232108004558, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 7776007857239841181, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 3776204230444619361, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
 --- !u!1 &7015657 stripped
 GameObject:
@@ -1314,6 +1296,28 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 2351505566771328527, guid: 4d7e2f87fefe0ba468719b15288b46e7, type: 3}
   m_PrefabInstance: {fileID: 424860035}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &424860037 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5302893730759227071, guid: 4d7e2f87fefe0ba468719b15288b46e7, type: 3}
+  m_PrefabInstance: {fileID: 424860035}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5ecb302c7ea48344b3a839df64a77a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &424860038 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4102833070697430761, guid: 4d7e2f87fefe0ba468719b15288b46e7, type: 3}
+  m_PrefabInstance: {fileID: 424860035}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1175590bcfccd6d44a4c8f9a15292536, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &495723310
 GameObject:
   m_ObjectHideFlags: 0
@@ -2563,6 +2567,32 @@ MonoBehaviour:
   blue: {fileID: 2100000, guid: 1e24b011deb43a147b9148ec5240f77a, type: 2}
   pink: {fileID: 2100000, guid: f600bdabf46cd81498fb0a615e22f304, type: 2}
   yellow: {fileID: 2100000, guid: c1c5013556bc13f43bfd06b5cdbd15c4, type: 2}
+  idleCursorPrefab: {fileID: 2884278072624468823, guid: 7de3c24579f03ed4088122bac0a37367, type: 3}
+  defaultDistanceInMeters: 1.5
+  idleStateColor: {r: 0.9622642, g: 0.040850822, b: 0.040850822, a: 0.50980395}
+  hightlightStateColor: {r: 0.9607843, g: 0.039215688, b: 0.039215688, a: 0}
+  gazeController: {fileID: 424860037}
+  _gazeTranslationAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Gaze Translation
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: e456e2da-fea2-4cb2-926d-e57d150ba640
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: ce07dc19-7f71-4e46-b953-a1d65be5c29b
+        m_Path: <EyeGaze>/pose/position
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Gaze Translation
+        m_Flags: 0
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  gazeInteractorCursorOnObject: {fileID: 424860038}
 --- !u!114 &1508439048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2977,25 +3007,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7776007856328844323, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 3776204231346187231, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 7776007855563873074, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 3776204232108004558, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 7776007857239841181, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 3776204230444619361, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
 --- !u!4 &1615913309 stripped
 Transform:
