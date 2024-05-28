@@ -56,7 +56,6 @@ public class Launcher : MonoBehaviourPunCallbacks
                 //Debug.Log("I should add TaskSelector!!");
                 GameObject.Find("TaskSelectorScript").transform.GetChild(0).gameObject.SetActive(true);
             }
-            GameObject.Find("Canvas").SetActive(false);
         }
     }
 
@@ -135,7 +134,6 @@ public class Launcher : MonoBehaviourPunCallbacks
             //Debug.Log("I should add TaskSelector!!");
             GameObject.Find("TaskSelectorScript").transform.GetChild(0).gameObject.SetActive(true);
         }
-        GameObject.Find("Canvas").SetActive(false);//NEW
     }
 
     #endregion

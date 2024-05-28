@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using MixedReality.Toolkit.SpatialManipulation;
 using Microsoft.MixedReality.GraphicsTools;
-using UnityEngine.UIElements;
-using MixedReality.Toolkit.Examples;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using MixedReality.Toolkit.Input;
@@ -46,10 +44,14 @@ public class SpawnSphere : SpawnSphereInterface
 
     [SerializeField]
     private GazeInteractor gazeInteractorCursorOnObject;
+
+    [SerializeField]
+    private Color outlineOriginalColor;
+    [SerializeField]
+    private Material[] outlineMaterials;
     #endregion
 
     #region Private Fields
-    private Material spawnMaterial;
     // Array to store positions
     private Vector3[] spherePositions;
     private Vector3[] sizes = new Vector3[3];
@@ -57,33 +59,30 @@ public class SpawnSphere : SpawnSphereInterface
     private Color[] originalColors = new Color[nbrSpawnPoint];
     private GameObject currentNewSphere;
     private Renderer sphereRenderer;
-    private bool config;
     #endregion
 
     #region Getter
-    #region Getter
-    public GameObject IdleCursorPrefab{get { return idleCursorPrefab; }}
+    public GameObject IdleCursorPrefab { get { return idleCursorPrefab; } }
 
     public float DefaultDistanceInMeters { get { return defaultDistanceInMeters; } }
 
-    public Color IdleStateColor { get { return idleStateColor; }}   
+    public Color IdleStateColor { get { return idleStateColor; } }
 
-    public Color HightlightStateColor { get { return hightlightStateColor; }}
+    public Color HightlightStateColor { get { return hightlightStateColor; } }
 
-    public ActionBasedController ActionBasedController { get { return gazeController; }}    
+    public ActionBasedController ActionBasedController { get { return gazeController; } }
 
-    public InputActionProperty InputActionProperty { get { return _gazeTranslationAction;}}
+    public InputActionProperty InputActionProperty { get { return _gazeTranslationAction; } }
 
-    public bool Config { get { return config; }}
-
-    #endregion
+    public Color OutlineOriginalColor { get { return outlineOriginalColor; } }
 
     #endregion
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
 
         //Initialisation of spheres logic
 
@@ -112,6 +111,7 @@ public class SpawnSphere : SpawnSphereInterface
         gameArea.GetComponent<AudioSource>().clip = Resources.Load<AudioClip>("blub");
         gameArea.GetComponent<AudioSource>().volume = 0.007f;
 
+
     }
 
     // Update is called once per frame
@@ -124,9 +124,8 @@ public class SpawnSphere : SpawnSphereInterface
 
     public override void startGame()
     {
-        if(!PhotonNetwork.IsMasterClient) { GameObject.Find("CanvasLoading").SetActive(false); } //deactivate Loading message for other players
         gameArea.GetComponent<PhotonView>().RPC("startCount", RpcTarget.All);
-        
+
 
         // create sphereNumber spheres (here 3)
         for (int i = 0; i < nbrObjectToSpawn; i++)
@@ -136,7 +135,14 @@ public class SpawnSphere : SpawnSphereInterface
         //initialise idleCursor
         if (SceneConfig.useVisualizations)
         {
-            this.transform.GetChild(0).GetComponent<Pop>().GetComponent<PhotonView>().RPC("updateConfig", RpcTarget.All);
+            GameObject parentObject = this.gameObject;
+            for (int i = 0; i < parentObject.transform.childCount; i++)
+            {
+                Transform child = parentObject.transform.GetChild(i);
+                //Debug.Log("Child " + i + ": " + child.name);
+                child.GetComponent<Pop>().GetComponent<PhotonView>().RPC("addIdleCursor", RpcTarget.All);
+            }
+            //this.transform.GetChild(0).GetComponent<Pop>().GetComponent<PhotonView>().RPC("addIdleCursor", RpcTarget.All);
         }
         time = Time.realtimeSinceStartup;
         logger.StartNewCSV(1);
@@ -166,6 +172,13 @@ public class SpawnSphere : SpawnSphereInterface
 
         // updates the new sphere to all clients
         gameArea.GetComponent<PhotonView>().RPC("newSphere", RpcTarget.All, pos, color, size);
+
+        //add Cursor On Object if Visu activated
+        if (SceneConfig.useVisualizations)
+        {
+            gameArea.GetComponent<PhotonView>().RPC("addCursorAndOutlineOnObjects", RpcTarget.All, pos);
+
+        }
     }
 
     //generate 27 positions available to spawn spheres inside the cube and fill spherePosition[] with it
@@ -229,14 +242,15 @@ public class SpawnSphere : SpawnSphereInterface
             //make it inactive
             newSphere.SetActive(false);
 
+            //give unique meshoutline to each instanciated sphere (!!!!! must be 27 spheres or need to add some material to outlinematerials
+            newSphere.GetComponent<MeshOutline>().OutlineMaterial = outlineMaterials[pos];
+            
             //make outline invisible 
-            newSphere.GetComponent<MeshOutline>().OutlineWidth = 0.0f;
+            //newSphere.GetComponent<MeshOutline>().OutlineMaterial.color = new Color(outlineOriginalColor.r, outlineOriginalColor.b, outlineOriginalColor.g, 0.0f);
 
             //keep the position in memory to check future spawning 
             newSphere.GetComponent<PopSphere>().setIndex(pos);
-
-            //add gaze interactor to cursor on object
-            
+            newSphere.GetComponent<SigmoidVisualization>().setIndex(pos);
         }
     }
 
@@ -263,7 +277,6 @@ public class SpawnSphere : SpawnSphereInterface
 
 
     // called when sphere is popped (from TaskPop script)
-    // MODIFIED
     public override void spherePoped(int id, float time1, float time2, float time3)
     {
         // updates popCounter and popText for all players
@@ -289,8 +302,20 @@ public class SpawnSphere : SpawnSphereInterface
         // remove popped sphere from activeSpheres list
         activeSpheres.Remove(spheresArray[id]);
 
-        // deactivate the popped sphere for all clients
-        gameArea.GetComponent<PhotonView>().RPC("deActivateSphere", RpcTarget.All, id);
+        //remove cursor on object is visu is true
+        if (SceneConfig.useVisualizations)
+        {
+            //remove visualizations cues AND pop sphere
+            gameArea.GetComponent<PhotonView>().RPC("removeCursorAndOutlineOnObjects", RpcTarget.All, id);
+        }
+        else
+        {
+            // deactivate the popped sphere for all clients
+            gameArea.GetComponent<PhotonView>().RPC("deActivateSphere", RpcTarget.All, id);
+
+        }
+
+
 
         // creates a random new sphere
         if (activeSpheres.Count < nbrObjectToSpawn)
@@ -326,15 +351,7 @@ public class SpawnSphere : SpawnSphereInterface
         spheresArray[sPos].GetComponent<Pop>().readyCount = 0;
         spheresArray[sPos].GetComponent<Pop>().myFlag = false;
         spheresArray[sPos].GetComponent<Pop>().otherFlag = false;
-        if (SceneConfig.useVisualizations)
-        {
-            spheresArray[sPos].GetComponent<Pointer>().enabled = true;
-            spheresArray[sPos].GetComponent<Pointer>().gazeInteractor = gazeInteractorCursorOnObject;
-        }
-        else
-        {
-            spheresArray[sPos].GetComponent<Pointer>().enabled = false;
-        }
+
     }
 
     [PunRPC]
@@ -352,7 +369,7 @@ public class SpawnSphere : SpawnSphereInterface
     [PunRPC]
     public override void deActivateSphere(int id)
     {
-        spheresArray[id].SetActive(false);       
+        spheresArray[id].SetActive(false);
     }
 
     [PunRPC]
@@ -370,5 +387,30 @@ public class SpawnSphere : SpawnSphereInterface
         sphereMaterial.color = originalColors[id];
     }
 
+    [PunRPC]
+    public void addCursorAndOutlineOnObjects(int pos)
+    {
+        spheresArray[pos].GetComponent<Pointer>().enabled = true;
+        spheresArray[pos].GetComponent<Pointer>().gazeInteractor = gazeInteractorCursorOnObject;
+        spheresArray[pos].GetComponent<SigmoidVisualization>().enabled = true;
+        spheresArray[pos].GetComponent<SigmoidVisualization>().OriginalColor = outlineOriginalColor;
+    }
+
+    [PunRPC]
+    public void removeCursorAndOutlineOnObjects(int pos)
+    {
+        spheresArray[pos].GetComponent<Pointer>().enabled = false;
+        spheresArray[pos].GetComponent<Pointer>().hitPointDisplayer.SetActive(false);
+        spheresArray[pos].GetComponent<SigmoidVisualization>().enabled = false;
+        spheresArray[pos].GetComponent<MeshOutline>().OutlineMaterial.color = new Color(outlineOriginalColor.r, outlineOriginalColor.g, outlineOriginalColor.b, 0.0f);
+        spheresArray[pos].SetActive(false);
+    }
+
+    [PunRPC]
+
+    public void updateOutline(int pos, float intensity)
+    {
+        spheresArray[pos].GetComponent<MeshOutline>().OutlineMaterial.color = new Color(outlineOriginalColor.r, outlineOriginalColor.g, outlineOriginalColor.b, intensity);
+    }
     #endregion
 }

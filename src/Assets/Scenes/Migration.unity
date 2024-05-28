@@ -2593,6 +2593,35 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 0}
   gazeInteractorCursorOnObject: {fileID: 424860038}
+  outlineOriginalColor: {r: 0.083704144, g: 0.1844652, b: 0.9339623, a: 0}
+  outlineMaterials:
+  - {fileID: 2100000, guid: 2b6ec9e8697196b428a2d42df52ba11b, type: 2}
+  - {fileID: 2100000, guid: 81d0fb3993ce86c449ac01aa83cc65a4, type: 2}
+  - {fileID: 2100000, guid: 8e9d76431dd7199469c9cce81e09afc8, type: 2}
+  - {fileID: 2100000, guid: fadc50214a41de2418efa69b48aea935, type: 2}
+  - {fileID: 2100000, guid: 36941279bbe4c1c48a5ce64163477171, type: 2}
+  - {fileID: 2100000, guid: d48d6c2e36391e942a876b20b55025df, type: 2}
+  - {fileID: 2100000, guid: 48d21c82666ec654293902852516fff6, type: 2}
+  - {fileID: 2100000, guid: 1ecaad81d17ebd94eb882484574f0818, type: 2}
+  - {fileID: 2100000, guid: 1493e44a09059414a87df2ba25d229e2, type: 2}
+  - {fileID: 2100000, guid: 97b496ef67f9fb94385b7d0fe0b0101c, type: 2}
+  - {fileID: 2100000, guid: 52f18651c2e7a3146bf66924d0bf18b8, type: 2}
+  - {fileID: 2100000, guid: f2189d9a28d8a244e9c758e5b8fe4047, type: 2}
+  - {fileID: 2100000, guid: 2ecab0a9b8f21a2438020c148c79ca18, type: 2}
+  - {fileID: 2100000, guid: 15fbdb861709754458003357538bb12d, type: 2}
+  - {fileID: 2100000, guid: 5d1a6d0acad1d2b41b19e8e1e83c2d84, type: 2}
+  - {fileID: 2100000, guid: c9cea45ef7121704ebf1fd166fbe96c0, type: 2}
+  - {fileID: 2100000, guid: bb3845d54a3650a4386907499ca15727, type: 2}
+  - {fileID: 2100000, guid: 9a1f2c5176831034d9b8d351ed42dbd7, type: 2}
+  - {fileID: 2100000, guid: 51ace93704f7db049999004f1cf537a9, type: 2}
+  - {fileID: 2100000, guid: e4f9ac1f421e0bf48b4f8d330e842288, type: 2}
+  - {fileID: 2100000, guid: 91e80838824e32d459447f5561e81530, type: 2}
+  - {fileID: 2100000, guid: 3125a44eeb528cc489c0a39ba3cce18c, type: 2}
+  - {fileID: 2100000, guid: caf6e460443a2d841a1e32496a550eb0, type: 2}
+  - {fileID: 2100000, guid: abf539693a59c73438ea630bf0153816, type: 2}
+  - {fileID: 2100000, guid: bd445f223be8c1c46bcc0d796d629676, type: 2}
+  - {fileID: 2100000, guid: be2bf2aebbd13dd499ee50b4dea242fe, type: 2}
+  - {fileID: 2100000, guid: aadbdf8120e330f4eaaea5e60ae8b29f, type: 2}
 --- !u!114 &1508439048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3894,6 +3923,10 @@ PrefabInstance:
     - target: {fileID: 1638493385712066549, guid: 6d9de61fb240c4d45889b858ecb6cd9c, type: 3}
       propertyPath: m_Name
       value: CanvasLoading
+      objectReference: {fileID: 0}
+    - target: {fileID: 1638493385712066549, guid: 6d9de61fb240c4d45889b858ecb6cd9c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1638493385712066550, guid: 6d9de61fb240c4d45889b858ecb6cd9c, type: 3}
       propertyPath: m_LocalPosition.x

@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 1212878653143345877}
   - component: {fileID: -3055638834404225699}
   - component: {fileID: 2040015748532605810}
+  - component: {fileID: 3024120126567991156}
   m_Layer: 0
   m_Name: SpherePrefab
   m_TagString: Untagged
@@ -317,11 +318,35 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 3024120126567991156}
+          m_TargetAssemblyTypeName: SigmoidVisualization, Assembly-CSharp
+          m_MethodName: Increment
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     onExited:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 2040015748532605810}
           m_TargetAssemblyTypeName: Pointer, Assembly-CSharp
+          m_MethodName: Decrement
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 3024120126567991156}
+          m_TargetAssemblyTypeName: SigmoidVisualization, Assembly-CSharp
           m_MethodName: Decrement
           m_Mode: 1
           m_Arguments:
@@ -654,3 +679,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gazeInteractor: {fileID: 0}
   hitPointDisplayPrefab: {fileID: 2884278072624468823, guid: 7de3c24579f03ed4088122bac0a37367, type: 3}
+  hitPointDisplayer: {fileID: 0}
+--- !u!114 &3024120126567991156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2395276251505114007}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8024a6e92a0b0564d9498039f0cf2b35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  increaseSpeed: 1
+  decreaseSpeed: 0.5
+  maxIntensity: 1
+  originalColor: {r: 0.3512903, g: 0.9622642, b: 0.05900679, a: 0}

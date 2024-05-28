@@ -10,7 +10,7 @@ public class Pointer : MonoBehaviour
     [SerializeField]
     private GameObject hitPointDisplayPrefab;
 
-    private GameObject hitPointDisplayer;
+    public GameObject hitPointDisplayer;
 
  
     private GameObject objectOfInterest;

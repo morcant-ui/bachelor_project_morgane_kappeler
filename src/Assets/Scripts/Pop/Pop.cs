@@ -79,8 +79,8 @@ public abstract class Pop : MonoBehaviour
     }
 
     [PunRPC]
-    public void updateConfig() {       
-        Debug.Log("Task 2 configuration");
+    public void addIdleCursor() {       
+        Debug.Log("Activate Idle Cursor");
         GameObject idleCursorPrefab = this.transform.parent.GetComponent<SpawnSphere>().IdleCursorPrefab;
         GameObject idleCrosshair = Instantiate(idleCursorPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         idleCrosshair.AddComponent<IdlePointer>();

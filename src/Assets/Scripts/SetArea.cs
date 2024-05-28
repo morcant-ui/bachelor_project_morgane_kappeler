@@ -17,10 +17,6 @@ public class SetArea : MonoBehaviour
         {
             this.gameObject.SetActive(false);
         }
-        else
-        {
-            GameObject.Find("CanvasLoading").SetActive(false);//deactivate loading mess for master
-        }
     }
 
     //makes the game area unmovable for all clients

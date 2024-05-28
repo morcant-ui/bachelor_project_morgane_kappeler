@@ -1,13 +1,12 @@
 using Microsoft.MixedReality.GraphicsTools;
-using System.Collections;
-using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class SigmoidVisualization : MonoBehaviour
 {
     #region SerializeFields
-    [SerializeField]
-    private Color originalColor;
+    //[SerializeField]
+    //public Color originalColor;
     #endregion
 
     #region Private Fields
@@ -18,6 +17,8 @@ public class SigmoidVisualization : MonoBehaviour
     private float fixationStartTime;
     private float fixationEndTime;
     private float currentIntensity = 0f;
+
+    private int id;
     #endregion
 
     #region Public Fields
@@ -25,15 +26,17 @@ public class SigmoidVisualization : MonoBehaviour
     public float increaseSpeed = 1.0f;
     public float decreaseSpeed = 0.5f;
     public float maxIntensity = 1.0f;
+
+    private Color originalColor;
     #endregion
 
+    public Color OriginalColor { get { return originalColor; } set {  originalColor = value; } }
 
+    public void setIndex(int position) { id = position; }
     // Start is called before the first frame update
     void Start()
     {
-        //Renderer renderer = GetComponent<Renderer>();
-        //outlineMaterial = renderer.material;
-        outlineMaterial = GetComponent<MeshOutline>().OutlineMaterial;
+        outlineMaterial = GetComponent<MeshOutline>().OutlineMaterial;    
         outlineMaterial.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0.0f);
 
     }
@@ -43,22 +46,17 @@ public class SigmoidVisualization : MonoBehaviour
     {
         if (isWatched)
         {
-            //outlineMaterial.color = originalColor;
-
             float fixationDuration = Time.time - fixationStartTime;
             float targetIntensity = CalculateSigmoidIntensity(fixationDuration);
             currentIntensity = Mathf.Lerp(currentIntensity, targetIntensity, Time.deltaTime * increaseSpeed);
-            Debug.Log("intensity should be rising:" + currentIntensity);
         }
         else
         {
-            //outlineMaterial.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0.0f);
             float fixationDuration = Time.time - fixationEndTime;
             currentIntensity = Mathf.Lerp(currentIntensity, 0, Time.deltaTime * decreaseSpeed);
-            Debug.Log("intensity should be decreasing:" + currentIntensity);
         }
-        //outlineMaterial.SetFloat("_OutlineIntensity", currentIntensity);
-        outlineMaterial.color = new Color(originalColor.r, originalColor.g, originalColor.b, currentIntensity);
+        //outlineMaterial.color = new Color(originalColor.r, originalColor.g, originalColor.b, currentIntensity); //own's gaze
+        this.transform.parent.GetComponent<SpawnSphere>().GetComponent<PhotonView>().RPC("updateOutline", RpcTarget.Others, id, currentIntensity); //partner's gaze
     }
 
     #region Private Methods
@@ -81,5 +79,6 @@ public class SigmoidVisualization : MonoBehaviour
     {
         isWatched = false;
     }
+
     #endregion
 }
