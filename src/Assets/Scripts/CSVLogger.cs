@@ -93,9 +93,13 @@ namespace holoutils
         // called at the beginning of the game, before logging data
         public void StartNewCSV(int sceneNumber)
         {
+            Debug.Log("start of the StartNewCSV");
             m_recordingId = DateTime.Now.ToString("yyyyMMdd_HHmmssfff");
+            Debug.Log("recordingId has been done");
             var filename = m_recordingId + "-" + scene + "-" + DataSuffix + ".csv";
+            Debug.Log("filename was created");
             m_filePath = Path.Combine(m_sessionPath, filename);
+            Debug.Log("m_filePath has been updated");
             if (m_csvData != null)
             {
                 EndCSV();

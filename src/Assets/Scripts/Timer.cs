@@ -45,6 +45,9 @@ public class Timer : MonoBehaviour
         // stores the logger component in a variable for later usage
         logger = this.GetComponent<CSVLogger>();
 
+        // Additional log to confirm Start method is completed
+        Debug.Log("Timer Start method completed.");
+
     }
 
 
@@ -53,6 +56,7 @@ public class Timer : MonoBehaviour
     public void startTimer()
     {
         timerIsRunning = true;
+        Debug.Log("Timer started via RPC.");
     }
 
 
@@ -101,7 +105,7 @@ public class Timer : MonoBehaviour
 
         // diplays end text and set the endDisplay active
         int popCounter = gameArea.GetComponent<SpawnSphereInterface>().popCounter;
-        endPannel.transform.GetChild(1).transform.Find("Text").GetComponent<TMPro.TextMeshProUGUI>().text = "Congratulations!\n\nGiven time: " + totalTime / 60 + " minutes\n\nScore: " + popCounter + " spheres popped\n";
+        endPannel.transform.GetChild(1).transform.Find("Text").GetComponent<TMPro.TextMeshProUGUI>().text = "Congratulations!\n\nGiven time: " + totalTime / 60 + " minutes\n\nScore: " + popCounter + " spheres popped\n"; //look at this
         endPannel.SetActive(true);
         this.GetComponent<AudioSource>().Play();
 

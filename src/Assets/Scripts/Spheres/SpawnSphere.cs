@@ -144,6 +144,10 @@ public class SpawnSphere : SpawnSphereInterface
             }
             //this.transform.GetChild(0).GetComponent<Pop>().GetComponent<PhotonView>().RPC("addIdleCursor", RpcTarget.All);
         }
+        else
+        {
+            Debug.Log("there is no visualizations");
+        }
         time = Time.realtimeSinceStartup;
         logger.StartNewCSV(1);
         GameObject.Find("Timer").GetComponent<PhotonView>().RPC("startTimer", RpcTarget.All);
