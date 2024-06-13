@@ -139,8 +139,16 @@ public class SpawnSphere : SpawnSphereInterface
             for (int i = 0; i < parentObject.transform.childCount; i++)
             {
                 Transform child = parentObject.transform.GetChild(i);
-                //Debug.Log("Child " + i + ": " + child.name);
-                child.GetComponent<Pop>().GetComponent<PhotonView>().RPC("addIdleCursor", RpcTarget.All);
+                Debug.Log("Child " + i + ": " + child.name);
+                if (child.name == "demoSpheres" || child.name == "CrosshairDemo")
+                {
+                    Debug.Log("Doing nothing");
+                }
+                else
+                {
+                    child.GetComponent<Pop>().GetComponent<PhotonView>().RPC("addIdleCursor", RpcTarget.All);
+
+                }
             }
             //this.transform.GetChild(0).GetComponent<Pop>().GetComponent<PhotonView>().RPC("addIdleCursor", RpcTarget.All);
         }
@@ -171,7 +179,7 @@ public class SpawnSphere : SpawnSphereInterface
         // random size
         int size = Random.Range(0, sizes.Length);
 
-        //ranfom color
+        //random color
         int color = Random.Range(0, colors.Length);
 
         // updates the new sphere to all clients
@@ -248,7 +256,9 @@ public class SpawnSphere : SpawnSphereInterface
 
             //give unique meshoutline to each instanciated sphere (!!!!! must be 27 spheres or need to add some material to outlinematerials
             newSphere.GetComponent<MeshOutline>().OutlineMaterial = outlineMaterials[pos];
-            
+            Color color = newSphere.GetComponent<MeshOutline>().OutlineMaterial.color;
+            newSphere.GetComponent<MeshOutline>().OutlineMaterial.color = new Color(color.r, color.g, color.b, 0.0f);
+
             //make outline invisible 
             //newSphere.GetComponent<MeshOutline>().OutlineMaterial.color = new Color(outlineOriginalColor.r, outlineOriginalColor.b, outlineOriginalColor.g, 0.0f);
 
@@ -408,6 +418,15 @@ public class SpawnSphere : SpawnSphereInterface
         spheresArray[pos].GetComponent<SigmoidVisualization>().enabled = false;
         spheresArray[pos].GetComponent<MeshOutline>().OutlineMaterial.color = new Color(outlineOriginalColor.r, outlineOriginalColor.g, outlineOriginalColor.b, 0.0f);
         spheresArray[pos].SetActive(false);
+    }
+
+    [PunRPC]
+    public void removeONLYCursorAndOutlineOnObjects(int pos)
+    {
+        spheresArray[pos].GetComponent<Pointer>().enabled = false;
+        spheresArray[pos].GetComponent<Pointer>().hitPointDisplayer.SetActive(false);
+        spheresArray[pos].GetComponent<SigmoidVisualization>().enabled = false;
+        spheresArray[pos].GetComponent<MeshOutline>().OutlineMaterial.color = new Color(outlineOriginalColor.r, outlineOriginalColor.g, outlineOriginalColor.b, 0.0f);
     }
 
     [PunRPC]

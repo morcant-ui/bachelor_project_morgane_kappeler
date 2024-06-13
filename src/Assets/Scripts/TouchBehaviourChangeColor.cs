@@ -23,8 +23,8 @@ public class TouchBehavio : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float sliderValue = SliderTransparency.oldSliderValue;
-        sphereTouchedColor = new Color(sphereOriginalColor.r - sliderValue, sphereOriginalColor.g - sliderValue, sphereOriginalColor.b - sliderValue, 255f);
+        //float sliderValue = SliderTransparency.oldSliderValue;
+        //sphereTouchedColor = new Color(sphereOriginalColor.r - sliderValue, sphereOriginalColor.g - sliderValue, sphereOriginalColor.b - sliderValue, 255f);
         if (isTouched)
         {
             sphereMaterial.color = sphereTouchedColor;

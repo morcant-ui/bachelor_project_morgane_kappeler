@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6549821244499522520}
   - component: {fileID: -3966622138489358799}
   m_Layer: 2
-  m_Name: Crosshair
+  m_Name: CrosshairDemo
   m_TagString: IdleCrosshair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

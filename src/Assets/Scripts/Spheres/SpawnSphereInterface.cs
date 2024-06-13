@@ -73,7 +73,7 @@ public abstract class SpawnSphereInterface : MonoBehaviour
         gameArea.GetComponent<Collider>().enabled = true;
         gameArea.GetComponent<ObjectManipulator>().enabled = true;
         //gameArea.GetComponent<NearInteractionGrabbable>().enabled = true;
-        gameArea.GetComponent<Renderer>().material.SetColor("_Color", new Color(0.04325376f, 0.2356787f, 0.8490566f, 0.7647059f));
+        gameArea.GetComponent<Renderer>().material.SetColor("_Color", new Color(0.5724139f, 0f, 1f, 0.5019608f));
         //PointerUtils.SetHandRayPointerBehavior(PointerBehavior.AlwaysOn);
     }
 

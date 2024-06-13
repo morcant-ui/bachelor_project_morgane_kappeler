@@ -390,6 +390,7 @@ GameObject:
   - component: {fileID: 978601971}
   - component: {fileID: 978601973}
   - component: {fileID: 978601974}
+  - component: {fileID: 978601975}
   m_Layer: 0
   m_Name: Sphere (1)
   m_TagString: Untagged
@@ -798,7 +799,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b92945a7f7597974a93a7d80ad080781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalColor: {r: 0.2141419, g: 0.98742133, b: 0.052786604, a: 0.5019608}
+  color: {r: 0.08235294, g: 0.18431373, b: 0.93333334, a: 0}
+  increase: 1
+  decrease: 0.5
+  intensity: 1
 --- !u!114 &978601973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -813,6 +817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gazeInteractor: {fileID: 1141975269}
   hitPointDisplayPrefab: {fileID: 2884278072624468823, guid: 7de3c24579f03ed4088122bac0a37367, type: 3}
+  hitPointDisplayer: {fileID: 0}
 --- !u!114 &978601974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -825,6 +830,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef2b7018f12fac147bcefbc385b7d76d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &978601975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978601964}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8024a6e92a0b0564d9498039f0cf2b35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  increaseSpeed: 1
+  decreaseSpeed: 0.5
+  maxIntensity: 1
 --- !u!114 &1141975269 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4102833070697430761, guid: 4d7e2f87fefe0ba468719b15288b46e7, type: 3}
@@ -887,6 +907,7 @@ GameObject:
   - component: {fileID: 1359503583}
   - component: {fileID: 1359503585}
   - component: {fileID: 1359503586}
+  - component: {fileID: 1359503587}
   m_Layer: 0
   m_Name: Sphere (3)
   m_TagString: Untagged
@@ -1295,7 +1316,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b92945a7f7597974a93a7d80ad080781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalColor: {r: 0.21568628, g: 0.9882353, b: 0.05490196, a: 0.5019608}
+  color: {r: 0.08235294, g: 0.18431373, b: 0.93333334, a: 0}
+  increase: 1
+  decrease: 0.5
+  intensity: 1
 --- !u!114 &1359503585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1310,6 +1334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gazeInteractor: {fileID: 1141975269}
   hitPointDisplayPrefab: {fileID: 2884278072624468823, guid: 7de3c24579f03ed4088122bac0a37367, type: 3}
+  hitPointDisplayer: {fileID: 0}
 --- !u!114 &1359503586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1322,6 +1347,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef2b7018f12fac147bcefbc385b7d76d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1359503587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359503576}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8024a6e92a0b0564d9498039f0cf2b35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  increaseSpeed: 1
+  decreaseSpeed: 0.5
+  maxIntensity: 1
 --- !u!1 &1761949296 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2884278072624468823, guid: 7de3c24579f03ed4088122bac0a37367, type: 3}
@@ -1429,7 +1469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 854254128426986230, guid: 7148f9ce86f62ab4b8d89dc6cfa369a0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4014846479790359150, guid: 7148f9ce86f62ab4b8d89dc6cfa369a0, type: 3}
       propertyPath: m_LocalScale.x
@@ -1532,6 +1572,7 @@ GameObject:
   - component: {fileID: 1926737991}
   - component: {fileID: 1926737993}
   - component: {fileID: 1926737994}
+  - component: {fileID: 1926737995}
   m_Layer: 0
   m_Name: Sphere (2)
   m_TagString: Untagged
@@ -1940,7 +1981,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b92945a7f7597974a93a7d80ad080781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalColor: {r: 0.21568628, g: 0.9882353, b: 0.05490196, a: 0.5019608}
+  color: {r: 0.08235294, g: 0.18431373, b: 0.93333334, a: 0}
+  increase: 1
+  decrease: 0.5
+  intensity: 1
 --- !u!114 &1926737993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1955,6 +1999,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gazeInteractor: {fileID: 1141975269}
   hitPointDisplayPrefab: {fileID: 2884278072624468823, guid: 7de3c24579f03ed4088122bac0a37367, type: 3}
+  hitPointDisplayer: {fileID: 0}
 --- !u!114 &1926737994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1967,6 +2012,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef2b7018f12fac147bcefbc385b7d76d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1926737995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926737984}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8024a6e92a0b0564d9498039f0cf2b35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  increaseSpeed: 1
+  decreaseSpeed: 0.5
+  maxIntensity: 1
 --- !u!1 &1999424669 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9075688916865880868, guid: 7148f9ce86f62ab4b8d89dc6cfa369a0, type: 3}

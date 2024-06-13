@@ -51,9 +51,6 @@ public class Launcher : MonoBehaviourPunCallbacks
             //others have message Loading
             if (PhotonNetwork.IsMasterClient)
             {
-                //Debug.Log("I should remove loading!!");
-                //GameObject.Find("Canvas").SetActive(false);//NEW
-                //Debug.Log("I should add TaskSelector!!");
                 GameObject.Find("TaskSelectorScript").transform.GetChild(0).gameObject.SetActive(true);
             }
         }

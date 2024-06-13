@@ -34,6 +34,11 @@ public class BackToStart : MonoBehaviourPunCallbacks
     public void backToStart()
     {
         this.GetComponent<PhotonView>().RPC("DeleteAll", RpcTarget.All);
+        //disable idlecursor at the end 
+        if (SceneConfig.useVisualizations)
+        {
+            gameArea.transform.GetChild(0).GetComponent<Pop>().GetComponent<PhotonView>().RPC("destroyIdleCursors", RpcTarget.All);
+        }
         //GameObject.Find("CanvasLoading").transform.GetChild(0).gameObject.SetActive(true);
         StartCoroutine(wait());
     }

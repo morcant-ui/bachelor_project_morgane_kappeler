@@ -72,6 +72,13 @@ MonoBehaviour:
   - addCursorAndOutlineOnObjects
   - removeCursorAndOutlineOnObjects
   - updateOutline
+  - destroyAllIdleCursors
+  - destroyIdleCursors
+  - removeONLYCursorAndOutlineOnObjects
+  - startDemo
+  - addVisus
+  - removeVisus
+  - removeCursor
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

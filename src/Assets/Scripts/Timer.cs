@@ -69,7 +69,6 @@ public class Timer : MonoBehaviour
                 timeRemaining -= Time.deltaTime;
                 if (timeRemaining < 0) { timeRemaining = 0; }
                 this.DisplayTime(timeRemaining);
-                //Debug.Log("Hello, me is timer again, you still have " + timeRemaining);
             }
             // when the time is over -> fix remaining time to 0 and display it, set the timeIsRunning to false to stop the updates
             else
@@ -78,7 +77,23 @@ public class Timer : MonoBehaviour
 
                 timerIsRunning = false;
 
-                // diables the area, gets the number of popped spheres
+                //disable curson on object and outline
+                SpawnSphereInterface spheresScript = gameArea.GetComponent<SpawnSphereInterface>();
+                foreach (GameObject sphere in spheresScript.activeSpheres)
+                {
+                    if (SceneConfig.useVisualizations)
+                    {
+                        gameArea.GetComponent<PhotonView>().RPC("removeONLYCursorAndOutlineOnObjects", RpcTarget.All, sphere.GetComponent<Pop>().id);
+                    }
+                    
+                }
+                //disable idlecursor at the end 
+                if (SceneConfig.useVisualizations)
+                {
+                    gameArea.transform.GetChild(0).GetComponent<Pop>().GetComponent<PhotonView>().RPC("destroyIdleCursors", RpcTarget.All);
+                }
+
+                // disables the area, gets the number of popped spheres
                 gameArea.SetActive(false);
 
                 // sets the position of the end display to the previous position of the area

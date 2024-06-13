@@ -6,7 +6,12 @@ public abstract class Pop : MonoBehaviour
 {
     #region Private Fields
     private float amountToDecrease = 0.5f;
-    private bool isTouched = false; 
+    private bool isTouched = false;
+
+    //DEMO
+    private GameObject sphere;
+    private Material sphereMaterial;
+    private Color sphereColor;
     #endregion
 
     #region Public Fields
@@ -29,7 +34,8 @@ public abstract class Pop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       //not sure I'll be using it we'll see
+        //not used I think
+
     }
        
     // Update is called once per frame
@@ -53,6 +59,26 @@ public abstract class Pop : MonoBehaviour
     {
         isTouched = false;
         this.transform.parent.GetComponent<SpawnSphere>().GetComponent<PhotonView>().RPC("clientUntouched", PhotonNetwork.LocalPlayer, id);
+        this.GetComponent<PhotonView>().RPC("unTouch", RpcTarget.All);
+    }
+
+    //DEMOOOOO
+    public void IncrementDemo()
+    {
+        sphere = gameObject;
+        Debug.Log("Here is my name in incrementing: " + sphere.name);
+        sphereMaterial = sphere.GetComponent<Renderer>().material;
+        sphereColor = sphereMaterial.color;
+        sphereMaterial.color = new Color(sphereColor.r - amountToDecrease, sphereColor.g - amountToDecrease, sphereColor.b - amountToDecrease, 255f);
+        this.GetComponent<PhotonView>().RPC("dualTouch", RpcTarget.All, touchTime);
+    }
+
+    public void DecrementDemo()
+    {
+        sphere = gameObject;
+        sphereMaterial = sphere.GetComponent<Renderer>().material;
+        sphereColor = sphereMaterial.color;
+        sphereMaterial.color = new Color(sphereColor.r + amountToDecrease, sphereColor.g + amountToDecrease, sphereColor.b + amountToDecrease, 255f);
         this.GetComponent<PhotonView>().RPC("unTouch", RpcTarget.All);
     }
 
@@ -89,6 +115,26 @@ public abstract class Pop : MonoBehaviour
         idleCrosshair.GetComponent<IdlePointer>().hightlightStateColor = this.transform.parent.GetComponent<SpawnSphere>().HightlightStateColor;
         idleCrosshair.GetComponent<IdlePointer>().gazeController = this.transform.parent.GetComponent<SpawnSphere>().ActionBasedController;
         idleCrosshair.GetComponent<IdlePointer>()._gazeTranslationAction = this.transform.parent.GetComponent<SpawnSphere>().InputActionProperty;
+
+        idleCrosshair.tag = "IdleCrosshair"; // Assign a unique tag
+    }   
+
+    [PunRPC]
+    public void destroyIdleCursors()
+    {
+        GameObject[] idleCrosshairs = GameObject.FindGameObjectsWithTag("IdleCrosshair");
+        if (idleCrosshairs.Length > 0)
+        {
+            Debug.Log("Destroying all Idle Cursors");
+            foreach (GameObject idleCrosshair in idleCrosshairs)
+            {
+                Destroy(idleCrosshair);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No idle cursors found to destroy.");
+        }
     }
     #endregion
 }
