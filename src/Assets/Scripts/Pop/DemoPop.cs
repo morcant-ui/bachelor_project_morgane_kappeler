@@ -45,8 +45,8 @@ public class DemoPop : Pop
                 this.GetComponent<PhotonView>().RPC("deActivateSphere", RpcTarget.All);
             }
             this.GetComponent<MeshOutline>().OutlineWidth = 0f;
-            this.GetComponent<Pointer>().enabled = false;
-            this.GetComponent<Pointer>().hitPointDisplayer.SetActive(false);
+            this.GetComponent<PointerDemo>().enabled = false;
+            this.GetComponent<PointerDemo>().hitPointDisplayer.SetActive(false);
             for (int i = 0; i < 3; i++)
             {
                 touchTimes[i] = 0;

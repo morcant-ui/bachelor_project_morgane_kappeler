@@ -36,7 +36,7 @@ namespace holoutils
     {
         #region Constants to modify
         private const string DataSuffix = "data";
-        private const string CSVHeader1 = "Step, popped sphere, s1_id, s1_size, s1_color, s2_id, s2_size, s2_color, s3_id, s3_size, s3_color, pop time, p1 touch, p2 touch, p3 touch";
+        private const string CSVHeader1 = "Step, popped sphere, s1_id, s1_size, s1_color, s2_id, s2_size, s2_color, s3_id, s3_size, s3_color, pop time, pm touch, p1 touch, p2 touch, pm lookSphere, p1 lookSphere, p2 lookSphere";
         private const string CSVHeader2 = "Step, popped sphere, s1_id, s1_size, s1_color, s1_height, s1_speed, s2_id, s2_size, s2_color, s2_height, s2_speed, s3_id, s3_size, s3_color, s3_height, s3_speed, pop time, p1 touch, p2 touch, p3 touch";
         private const string SessionFolderRoot = "CSVLogger";
         #endregion
@@ -106,12 +106,14 @@ namespace holoutils
             }
             m_csvData = new StringBuilder();
             if (sceneNumber == 1)
+            //if (!SceneConfig.useVisualizations)
             {
                 m_csvData.AppendLine(CSVHeader1);
             }
             if (sceneNumber == 2)
+            //else
             {
-                m_csvData.AppendLine(CSVHeader2);
+                m_csvData.AppendLine(CSVHeader2); //pas besoin de ça moi ! :)
             }
         }
 

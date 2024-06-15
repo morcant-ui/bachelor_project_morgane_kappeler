@@ -964,6 +964,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackToStartButton
       objectReference: {fileID: 0}
+    - target: {fileID: 4233609346284486719, guid: 35f4f70e6c175f544a0f00654eedbf34, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -1009,7 +1013,7 @@ GameObject:
   - component: {fileID: 47627289}
   - component: {fileID: 47627288}
   - component: {fileID: 47627293}
-  - component: {fileID: 47627292}
+  - component: {fileID: 47627294}
   m_Layer: 0
   m_Name: demo3
   m_TagString: Untagged
@@ -1337,8 +1341,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 47627292}
-          m_TargetAssemblyTypeName: Pointer, Assembly-CSharp
+        - m_Target: {fileID: 47627294}
+          m_TargetAssemblyTypeName: PointerDemo, Assembly-CSharp
           m_MethodName: Increment
           m_Mode: 1
           m_Arguments:
@@ -1364,8 +1368,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 47627292}
-          m_TargetAssemblyTypeName: Pointer, Assembly-CSharp
+        - m_Target: {fileID: 47627294}
+          m_TargetAssemblyTypeName: PointerDemo, Assembly-CSharp
           m_MethodName: Decrement
           m_Mode: 1
           m_Arguments:
@@ -1648,21 +1652,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoConstraintSelection: 1
   selectedConstraints: []
---- !u!114 &47627292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 47627278}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37c7f2fe75da6f74b901ad0dbca07375, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gazeInteractor: {fileID: 424860038}
-  hitPointDisplayPrefab: {fileID: 2884278072624468823, guid: 7de3c24579f03ed4088122bac0a37367, type: 3}
-  hitPointDisplayer: {fileID: 0}
 --- !u!114 &47627293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1680,6 +1669,21 @@ MonoBehaviour:
   increase: 1
   decrease: 0.5
   intensity: 1
+--- !u!114 &47627294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47627278}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f046ceae698f1e6409970121a94bf5e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gazeInteractor: {fileID: 424860038}
+  hitPointDisplayPrefab: {fileID: 2884278072624468823, guid: 7de3c24579f03ed4088122bac0a37367, type: 3}
+  hitPointDisplayer: {fileID: 2884278072624468823, guid: 7de3c24579f03ed4088122bac0a37367, type: 3}
 --- !u!1 &49770633 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5464391486034055386, guid: 6f3fa608f5744114499ef3fb04c6a8d7, type: 3}
@@ -2446,8 +2450,8 @@ GameObject:
   - component: {fileID: 666181309}
   - component: {fileID: 666181308}
   - component: {fileID: 666181307}
-  - component: {fileID: 666181311}
   - component: {fileID: 666181310}
+  - component: {fileID: 666181312}
   m_Layer: 0
   m_Name: demo2
   m_TagString: Untagged
@@ -2871,8 +2875,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 666181311}
-          m_TargetAssemblyTypeName: Pointer, Assembly-CSharp
+        - m_Target: {fileID: 666181312}
+          m_TargetAssemblyTypeName: PointerDemo, Assembly-CSharp
           m_MethodName: Increment
           m_Mode: 1
           m_Arguments:
@@ -2898,8 +2902,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 666181311}
-          m_TargetAssemblyTypeName: Pointer, Assembly-CSharp
+        - m_Target: {fileID: 666181312}
+          m_TargetAssemblyTypeName: PointerDemo, Assembly-CSharp
           m_MethodName: Decrement
           m_Mode: 1
           m_Arguments:
@@ -3089,7 +3093,7 @@ MonoBehaviour:
   increase: 1
   decrease: 0.5
   intensity: 1
---- !u!114 &666181311
+--- !u!114 &666181312
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3098,12 +3102,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 666181297}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37c7f2fe75da6f74b901ad0dbca07375, type: 3}
+  m_Script: {fileID: 11500000, guid: f046ceae698f1e6409970121a94bf5e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   gazeInteractor: {fileID: 424860038}
   hitPointDisplayPrefab: {fileID: 2884278072624468823, guid: 7de3c24579f03ed4088122bac0a37367, type: 3}
-  hitPointDisplayer: {fileID: 0}
+  hitPointDisplayer: {fileID: 2884278072624468823, guid: 7de3c24579f03ed4088122bac0a37367, type: 3}
 --- !u!82 &897545663 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 857791395331553151, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
@@ -4861,7 +4865,7 @@ GameObject:
   - component: {fileID: 1738762070}
   - component: {fileID: 1738762069}
   - component: {fileID: 1738762068}
-  - component: {fileID: 1738762072}
+  - component: {fileID: 1738762074}
   - component: {fileID: 1738762073}
   m_Layer: 0
   m_Name: demo1
@@ -5286,8 +5290,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1738762072}
-          m_TargetAssemblyTypeName: Pointer, Assembly-CSharp
+        - m_Target: {fileID: 1738762074}
+          m_TargetAssemblyTypeName: PointerDemo, Assembly-CSharp
           m_MethodName: Increment
           m_Mode: 1
           m_Arguments:
@@ -5313,8 +5317,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 1738762072}
-          m_TargetAssemblyTypeName: Pointer, Assembly-CSharp
+        - m_Target: {fileID: 1738762074}
+          m_TargetAssemblyTypeName: PointerDemo, Assembly-CSharp
           m_MethodName: Decrement
           m_Mode: 1
           m_Arguments:
@@ -5487,21 +5491,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   autoConstraintSelection: 1
   selectedConstraints: []
---- !u!114 &1738762072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1738762058}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37c7f2fe75da6f74b901ad0dbca07375, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gazeInteractor: {fileID: 424860038}
-  hitPointDisplayPrefab: {fileID: 2884278072624468823, guid: 7de3c24579f03ed4088122bac0a37367, type: 3}
-  hitPointDisplayer: {fileID: 2884278072624468823, guid: 7de3c24579f03ed4088122bac0a37367, type: 3}
 --- !u!114 &1738762073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5519,6 +5508,21 @@ MonoBehaviour:
   increase: 1
   decrease: 0.5
   intensity: 1
+--- !u!114 &1738762074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738762058}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f046ceae698f1e6409970121a94bf5e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gazeInteractor: {fileID: 424860038}
+  hitPointDisplayPrefab: {fileID: 2884278072624468823, guid: 7de3c24579f03ed4088122bac0a37367, type: 3}
+  hitPointDisplayer: {fileID: 2884278072624468823, guid: 7de3c24579f03ed4088122bac0a37367, type: 3}
 --- !u!1 &1767399485
 GameObject:
   m_ObjectHideFlags: 0
@@ -5807,13 +5811,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5092507606405556712, guid: c25d8f2d22117bd40ad824684551fbde, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 1811028555225687572, guid: c25d8f2d22117bd40ad824684551fbde, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c25d8f2d22117bd40ad824684551fbde, type: 3}
 --- !u!4 &1899512830 stripped
 Transform:

@@ -28,6 +28,8 @@ public abstract class SpawnSphereInterface : MonoBehaviour
     protected static Dictionary<float, string> sizeMap;
 
     protected float time;
+    protected float gazeTime;
+    protected float[] gazeTimes = new float[3];
 
     protected TMPro.TextMeshProUGUI popText;
 

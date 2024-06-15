@@ -159,6 +159,10 @@ public class SpawnSphere : SpawnSphereInterface
         time = Time.realtimeSinceStartup;
         logger.StartNewCSV(1);
         GameObject.Find("Timer").GetComponent<PhotonView>().RPC("startTimer", RpcTarget.All);
+        for (int i = 0; i < 3; i++)
+        {
+            gazeTimes[i] = 0.0f;
+        }
     }
 
     void makeSphere(int prevPos)
@@ -313,6 +317,13 @@ public class SpawnSphere : SpawnSphereInterface
         data.Add(time2.ToString("F2"));
         data.Add(time3.ToString("F2"));
 
+        for (int i = 0; i < 3; i++)
+        {
+            data.Add(gazeTimes[i].ToString("F2"));
+        }
+
+        
+
         // remove popped sphere from activeSpheres list
         activeSpheres.Remove(spheresArray[id]);
 
@@ -434,6 +445,15 @@ public class SpawnSphere : SpawnSphereInterface
     public void updateOutline(int pos, float intensity)
     {
         spheresArray[pos].GetComponent<MeshOutline>().OutlineMaterial.color = new Color(outlineOriginalColor.r, outlineOriginalColor.g, outlineOriginalColor.b, intensity);
+    }
+
+    [PunRPC]
+    public void gazeTimeUpdate(float gazeTimeUpdate, PhotonMessageInfo info)
+    {
+        Debug.Log("Time before: " + gazeTimes[info.Sender.ActorNumber - 1]);
+        gazeTimes[info.Sender.ActorNumber - 1] = gazeTimes[info.Sender.ActorNumber - 1] + gazeTimeUpdate;
+        Debug.Log("Time AFTER: " + gazeTimes[info.Sender.ActorNumber - 1]);
+
     }
     #endregion
 }

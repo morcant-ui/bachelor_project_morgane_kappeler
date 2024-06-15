@@ -148,7 +148,7 @@ Material:
     - _VertexExtrusionConstantWidth: 0
     - _VertexExtrusionSmoothNormal: 1
     - _VertexExtrusionSmoothNormals: 1
-    - _VertexExtrusionValue: 0
+    - _VertexExtrusionValue: 0.01
     - _ZOffsetFactor: 0
     - _ZOffsetUnits: 0
     - _ZTest: 4
@@ -157,7 +157,7 @@ Material:
     - _BlurBackgroundRect: {r: 0, g: 0, b: 1, a: 1}
     - _BorderColor: {r: 1, g: 1, b: 1, a: 0}
     - _ClippingBorderColor: {r: 1, g: 0.2, b: 0, a: 1}
-    - _Color: {r: 0.082312025, g: 0.18426895, b: 0.93333334, a: 0.8994221}
+    - _Color: {r: 0.08235294, g: 0.18431373, b: 0.93333334, a: 0}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
     - _EnvironmentColorX: {r: 1, g: 0, b: 0, a: 1}
     - _EnvironmentColorY: {r: 0, g: 1, b: 0, a: 1}

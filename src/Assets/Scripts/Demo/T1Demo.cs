@@ -56,7 +56,7 @@ public class T1Demo : Demo
     {
         foreach (Transform sphere in this.gameObject.transform)
         {
-            sphere.gameObject.GetComponent<Pointer>().enabled = true;
+            sphere.gameObject.GetComponent<PointerDemo>().enabled = true;
             sphere.gameObject.GetComponent<GazeVisualizer>().enabled = true;
             crosshair.SetActive(true);
 

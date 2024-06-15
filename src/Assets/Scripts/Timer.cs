@@ -90,7 +90,22 @@ public class Timer : MonoBehaviour
                 //disable idlecursor at the end 
                 if (SceneConfig.useVisualizations)
                 {
-                    gameArea.transform.GetChild(0).GetComponent<Pop>().GetComponent<PhotonView>().RPC("destroyIdleCursors", RpcTarget.All);
+                    //gameArea.transform.GetChild(0).GetComponent<Pop>().GetComponent<PhotonView>().RPC("destroyIdleCursors", RpcTarget.All);
+                    //GameObject parentObject = this.gameObject;
+                    for (int i = 0; i < gameArea.transform.childCount; i++)
+                    {
+                        Transform child = gameArea.transform.GetChild(i);
+                        Debug.Log("Child " + i + ": " + child.name);
+                        if (child.name == "demoSpheres" || child.name == "CrosshairDemo")
+                        {
+                            Debug.Log("Doing nothing");
+                        }
+                        else
+                        {
+                            child.GetComponent<Pop>().GetComponent<PhotonView>().RPC("destroyIdleCursors", RpcTarget.All);
+
+                        }
+                    }
                 }
 
                 // disables the area, gets the number of popped spheres

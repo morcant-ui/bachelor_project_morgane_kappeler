@@ -1,12 +1,8 @@
 using MixedReality.Toolkit.Input;
-using Photon.Pun;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-public class Pointer : MonoBehaviour
+public class PointerDemo : MonoBehaviour
 {
-
     //[SerializeField]
     public GazeInteractor gazeInteractor;
 
@@ -15,7 +11,7 @@ public class Pointer : MonoBehaviour
 
     public GameObject hitPointDisplayer;
 
- 
+
     private GameObject objectOfInterest;
 
     private bool isWatching = false;
@@ -23,8 +19,6 @@ public class Pointer : MonoBehaviour
 
     private const float hitPointOffset = 0.01f; //NEW
 
-    private Stack<float> gazeTimeINStack = new Stack<float>();
-    private float totalGazeTime = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -92,21 +86,11 @@ public class Pointer : MonoBehaviour
     public void Increment()
     {
         isWatching = true;
-        gazeTimeINStack.Push(GameObject.Find("Timer").GetComponent<Timer>().timeRemaining);
-
+        
     }
 
     public void Decrement()
     {
-        if (isWatching && gazeTimeINStack.Count > 0)
-        {
-            float gazeTimeIN = gazeTimeINStack.Pop();
-            float gazeTimeOUT = GameObject.Find("Timer").GetComponent<Timer>().timeRemaining; 
-            totalGazeTime = Math.Abs(gazeTimeIN - gazeTimeOUT);
-            Debug.Log("Total gaze time: " + totalGazeTime + " seconds");
-            this.transform.parent.GetComponent<SpawnSphere>().GetComponent<PhotonView>().RPC("gazeTimeUpdate", RpcTarget.All,totalGazeTime);
-        }
-        isWatching = false;
-        //gazeTimeOUT = Time.time;
+      isWatching = false;
     }
 }
