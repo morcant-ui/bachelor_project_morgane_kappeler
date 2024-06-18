@@ -30,6 +30,8 @@ public abstract class SpawnSphereInterface : MonoBehaviour
     protected float time;
     protected float gazeTime;
     protected float[] gazeTimes = new float[3];
+    // Liste pour stocker toutes les interactions de regard
+    protected List<GazeInteraction> gazeInteractions = new List<GazeInteraction>();
 
     protected TMPro.TextMeshProUGUI popText;
 

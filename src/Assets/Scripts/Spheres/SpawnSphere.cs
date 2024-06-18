@@ -163,6 +163,8 @@ public class SpawnSphere : SpawnSphereInterface
         {
             gazeTimes[i] = 0.0f;
         }
+        gazeInteractions.Clear();
+
     }
 
     void makeSphere(int prevPos)
@@ -269,6 +271,7 @@ public class SpawnSphere : SpawnSphereInterface
             //keep the position in memory to check future spawning 
             newSphere.GetComponent<PopSphere>().setIndex(pos);
             newSphere.GetComponent<SigmoidVisualization>().setIndex(pos);
+            newSphere.GetComponent<Pointer>().setIndex(pos);
         }
     }
 
@@ -297,6 +300,7 @@ public class SpawnSphere : SpawnSphereInterface
     // called when sphere is popped (from TaskPop script)
     public override void spherePoped(int id, float time1, float time2, float time3)
     {
+
         // updates popCounter and popText for all players
         gameArea.GetComponent<PhotonView>().RPC("updateValues", RpcTarget.All);
 
@@ -317,12 +321,44 @@ public class SpawnSphere : SpawnSphereInterface
         data.Add(time2.ToString("F2"));
         data.Add(time3.ToString("F2"));
 
+        //time spent by specific user watching at spheres since the BEGINNING
         for (int i = 0; i < 3; i++)
         {
             data.Add(gazeTimes[i].ToString("F2"));
         }
 
-        
+        //time spent watching this specific sphere per user during the ROUND
+        for (int i = 0; i < 3; i++)
+        {
+            List<GazeInteraction> interractionPerUser = gazeInteractions.FindAll(interaction => interaction.UserId == i);
+            foreach (GameObject s in activeSpheres)
+            {
+            List<GazeInteraction> interactions = interractionPerUser.FindAll(interaction => interaction.SphereId == s.GetComponent<Pop>().id);
+            
+                float totalTimeOnSphere = 0.0f;
+                foreach (GazeInteraction interaction in interactions)
+                {
+                    totalTimeOnSphere += interaction.TimeSpent;
+                }
+                data.Add(totalTimeOnSphere.ToString("F2"));
+            }
+                
+        }
+
+        //number of time each user look at each sphere during the ROUND 
+        for (int i = 0; i < 3; i++)
+        {
+            List<GazeInteraction> interractionPerUser = gazeInteractions.FindAll(interaction => interaction.UserId == i);
+            foreach (GameObject s in activeSpheres)
+            {
+                List<GazeInteraction> interactions = interractionPerUser.FindAll(interaction => interaction.SphereId == s.GetComponent<Pop>().id);
+                data.Add(interactions.Count.ToString("F2"));
+            }
+
+        }
+
+        //clean gazeInteracctions for next run
+        gazeInteractions.Clear();
 
         // remove popped sphere from activeSpheres list
         activeSpheres.Remove(spheresArray[id]);
@@ -339,8 +375,6 @@ public class SpawnSphere : SpawnSphereInterface
             gameArea.GetComponent<PhotonView>().RPC("deActivateSphere", RpcTarget.All, id);
 
         }
-
-
 
         // creates a random new sphere
         if (activeSpheres.Count < nbrObjectToSpawn)
@@ -448,12 +482,19 @@ public class SpawnSphere : SpawnSphereInterface
     }
 
     [PunRPC]
-    public void gazeTimeUpdate(float gazeTimeUpdate, PhotonMessageInfo info)
+    public void gazeTimeUpdate(float gazeTimeUpdate, float gazeTimeIN, int pos, PhotonMessageInfo info)
     {
-        Debug.Log("Time before: " + gazeTimes[info.Sender.ActorNumber - 1]);
-        gazeTimes[info.Sender.ActorNumber - 1] = gazeTimes[info.Sender.ActorNumber - 1] + gazeTimeUpdate;
-        Debug.Log("Time AFTER: " + gazeTimes[info.Sender.ActorNumber - 1]);
+        int actorNumber = info.Sender.ActorNumber - 1;
 
+        Debug.Log("Time before: " + gazeTimes[actorNumber]);
+        gazeTimes[actorNumber] = gazeTimes[actorNumber] + gazeTimeUpdate;
+        Debug.Log("Time AFTER: " + gazeTimes[actorNumber]);
+
+        // create new interraction and add it to the list
+        GazeInteraction newInteraction = new GazeInteraction(actorNumber, pos, gazeTimeUpdate, gazeTimeIN);
+        gazeInteractions.Add(newInteraction);
+
+        Debug.Log("New Interaction - UserID: " + actorNumber + ", SphereID: " + pos + ", TimeSpent: " + gazeTimeUpdate + ", StartTime: " + gazeTimeIN);
     }
     #endregion
 }

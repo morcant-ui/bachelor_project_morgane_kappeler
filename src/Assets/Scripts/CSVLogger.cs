@@ -36,8 +36,16 @@ namespace holoutils
     {
         #region Constants to modify
         private const string DataSuffix = "data";
-        private const string CSVHeader1 = "Step, popped sphere, s1_id, s1_size, s1_color, s2_id, s2_size, s2_color, s3_id, s3_size, s3_color, pop time, pm touch, p1 touch, p2 touch, pm lookSphere, p1 lookSphere, p2 lookSphere";
-        private const string CSVHeader2 = "Step, popped sphere, s1_id, s1_size, s1_color, s1_height, s1_speed, s2_id, s2_size, s2_color, s2_height, s2_speed, s3_id, s3_size, s3_color, s3_height, s3_speed, pop time, p1 touch, p2 touch, p3 touch";
+        private const string CSVHeader1 = "Step, popped sphere, s1_id, s1_size, s1_color, s2_id, s2_size, s2_color, s3_id, s3_size, s3_color, pop time, pm touch, p1 touch, p2 touch, pm totWatchingS, p1 totWatchingS, p2 totWatchingS," +
+            " pm s1 roundWatched, pm s2 roundWatched, pm s3 roundWatched, p1 s1 roundWatched, p1 s2 roundWatched, p1 s3 roundWatched, p2 s1 roundWatched, p2 s2 roundWatched, p2 s3 roundWatched," +
+            " pm s1 roundCount, pm s2 roundCount, pm s3 roundCount, p1 s1 roundCount, p1 s2 roundCount, p1 s3 roundCount, p2 s1 roundCount, p2 s2 roundCount, p2 s3 roundCount";
+        /// <summary>
+        /// p totWatchingS : time user p spent looking at spehre since de beginning
+        /// p s roundWatched : time sphere s has been watched by user p during the round
+        /// p s roundCount : number of time sphere s has been watched by user p during the round
+        /// </summary>
+        
+        //private const string CSVHeader2 = "Step, popped sphere, s1_id, s1_size, s1_color, s1_height, s1_speed, s2_id, s2_size, s2_color, s2_height, s2_speed, s3_id, s3_size, s3_color, s3_height, s3_speed, pop time, p1 touch, p2 touch, p3 touch";
         private const string SessionFolderRoot = "CSVLogger";
         #endregion
 
@@ -106,15 +114,14 @@ namespace holoutils
             }
             m_csvData = new StringBuilder();
             if (sceneNumber == 1)
-            //if (!SceneConfig.useVisualizations)
             {
                 m_csvData.AppendLine(CSVHeader1);
-            }
-            if (sceneNumber == 2)
-            //else
-            {
-                m_csvData.AppendLine(CSVHeader2); //pas besoin de ça moi ! :)
-            }
+             }
+        //if (sceneNumber == 2)
+        ////else
+        //{
+        //    m_csvData.AppendLine(CSVHeader2); //pas besoin de ça moi ! :)
+        //}
         }
 
         // called by OnDestroy() or by StartNewCSV() when the m_csvData is not null

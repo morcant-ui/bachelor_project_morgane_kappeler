@@ -26,6 +26,10 @@ public class Pointer : MonoBehaviour
     private Stack<float> gazeTimeINStack = new Stack<float>();
     private float totalGazeTime = 0f;
 
+    private int id;
+    public void setIndex(int position) { id = position; }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -103,10 +107,8 @@ public class Pointer : MonoBehaviour
             float gazeTimeIN = gazeTimeINStack.Pop();
             float gazeTimeOUT = GameObject.Find("Timer").GetComponent<Timer>().timeRemaining; 
             totalGazeTime = Math.Abs(gazeTimeIN - gazeTimeOUT);
-            Debug.Log("Total gaze time: " + totalGazeTime + " seconds");
-            this.transform.parent.GetComponent<SpawnSphere>().GetComponent<PhotonView>().RPC("gazeTimeUpdate", RpcTarget.All,totalGazeTime);
+            this.transform.parent.GetComponent<SpawnSphere>().GetComponent<PhotonView>().RPC("gazeTimeUpdate", RpcTarget.All,totalGazeTime, gazeTimeIN, id);
         }
         isWatching = false;
-        //gazeTimeOUT = Time.time;
     }
 }
