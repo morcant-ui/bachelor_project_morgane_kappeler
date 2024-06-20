@@ -204,6 +204,18 @@ PrefabInstance:
       value: "\uF3E1"
       objectReference: {fileID: 0}
     - target: {fileID: 6922232474701558454, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
+      propertyPath: disabledInteractorTypes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6922232474701558454, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
+      propertyPath: disabledInteractorTypes.Array.data[1].reference
+      value: MixedReality.Toolkit.IGazeInteractor, MixedReality.Toolkit.Core
+      objectReference: {fileID: 0}
+    - target: {fileID: 6922232474701558454, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
+      propertyPath: disabledInteractorTypes.Array.data[2].reference
+      value: MixedReality.Toolkit.IGazePinchInteractor, MixedReality.Toolkit.Core
+      objectReference: {fileID: 0}
+    - target: {fileID: 6922232474701558454, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
       propertyPath: isGrabSelected.onExited.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -348,6 +360,18 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6922232475148799399, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
+      propertyPath: disabledInteractorTypes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6922232475148799399, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
+      propertyPath: disabledInteractorTypes.Array.data[1].reference
+      value: MixedReality.Toolkit.IGazeInteractor, MixedReality.Toolkit.Core
+      objectReference: {fileID: 0}
+    - target: {fileID: 6922232475148799399, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
+      propertyPath: disabledInteractorTypes.Array.data[2].reference
+      value: MixedReality.Toolkit.IGazePinchInteractor, MixedReality.Toolkit.Core
+      objectReference: {fileID: 0}
+    - target: {fileID: 6922232475148799399, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
       propertyPath: isGrabSelected.onExited.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -490,6 +514,18 @@ PrefabInstance:
     - target: {fileID: 6922232475148799399, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
       propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6922232475604193032, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
+      propertyPath: disabledInteractorTypes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6922232475604193032, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
+      propertyPath: disabledInteractorTypes.Array.data[1].reference
+      value: MixedReality.Toolkit.IGazeInteractor, MixedReality.Toolkit.Core
+      objectReference: {fileID: 0}
+    - target: {fileID: 6922232475604193032, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
+      propertyPath: disabledInteractorTypes.Array.data[2].reference
+      value: MixedReality.Toolkit.IGazePinchInteractor, MixedReality.Toolkit.Core
       objectReference: {fileID: 0}
     - target: {fileID: 6922232475604193032, guid: 180d4d2203473be4fa3fef18d0bec80e, type: 3}
       propertyPath: isGrabHovered.onExited.m_PersistentCalls.m_Calls.Array.size
@@ -2194,6 +2230,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1004335056728579787, guid: 4d7e2f87fefe0ba468719b15288b46e7, type: 3}
+      propertyPath: m_Radius
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1437574425479626233, guid: 4d7e2f87fefe0ba468719b15288b46e7, type: 3}
+      propertyPath: m_Radius
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 2351505567455720332, guid: 4d7e2f87fefe0ba468719b15288b46e7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2269,6 +2313,14 @@ PrefabInstance:
     - target: {fileID: 5302893730759227071, guid: 4d7e2f87fefe0ba468719b15288b46e7, type: 3}
       propertyPath: m_ScaleDeltaAction.m_Action.m_SingletonActionBindings.Array.data[0].m_Action
       value: Scale Delta
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334666798807300184, guid: 4d7e2f87fefe0ba468719b15288b46e7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6056176063914695530, guid: 4d7e2f87fefe0ba468719b15288b46e7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8059422794742360860, guid: 4d7e2f87fefe0ba468719b15288b46e7, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
@@ -3199,7 +3251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63cfd3b5073bf624bb9b332fd462ce3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultDistanceInMeters: 1.5
+  defaultDistanceInMeters: 1
   idleStateColor: {r: 0.9607843, g: 0.039215688, b: 0.039215688, a: 0.50980395}
   hightlightStateColor: {r: 0.9607843, g: 0.039215688, b: 0.039215688, a: 0}
   gazeController: {fileID: 424860037}
@@ -4333,7 +4385,7 @@ MonoBehaviour:
   pink: {fileID: 2100000, guid: f600bdabf46cd81498fb0a615e22f304, type: 2}
   yellow: {fileID: 2100000, guid: c1c5013556bc13f43bfd06b5cdbd15c4, type: 2}
   idleCursorPrefab: {fileID: 2884278072624468823, guid: 7de3c24579f03ed4088122bac0a37367, type: 3}
-  defaultDistanceInMeters: 1.5
+  defaultDistanceInMeters: 1
   idleStateColor: {r: 0.9622642, g: 0.040850822, b: 0.040850822, a: 0.50980395}
   hightlightStateColor: {r: 0.9607843, g: 0.039215688, b: 0.039215688, a: 0}
   gazeController: {fileID: 424860037}
@@ -5469,7 +5521,7 @@ MonoBehaviour:
   rotateLerpTime: 0.001
   scaleLerpTime: 0.001
   enableConstraints: 1
-  constraintsManager: {fileID: 0}
+  constraintsManager: {fileID: 1738762070}
   manipulationLogicTypes:
     moveLogicType:
       reference: MixedReality.Toolkit.SpatialManipulation.MoveLogic, MixedReality.Toolkit.SpatialManipulation
@@ -5663,6 +5715,18 @@ PrefabInstance:
     - target: {fileID: 5092507606858315802, guid: c25d8f2d22117bd40ad824684551fbde, type: 3}
       propertyPath: m_Name
       value: PressableButton_32x32mm_IconAndText
+      objectReference: {fileID: 0}
+    - target: {fileID: 5572466351762964349, guid: c25d8f2d22117bd40ad824684551fbde, type: 3}
+      propertyPath: disabledInteractorTypes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5572466351762964349, guid: c25d8f2d22117bd40ad824684551fbde, type: 3}
+      propertyPath: disabledInteractorTypes.Array.data[1].reference
+      value: MixedReality.Toolkit.IGazeInteractor, MixedReality.Toolkit.Core
+      objectReference: {fileID: 0}
+    - target: {fileID: 5572466351762964349, guid: c25d8f2d22117bd40ad824684551fbde, type: 3}
+      propertyPath: disabledInteractorTypes.Array.data[2].reference
+      value: MixedReality.Toolkit.IGazePinchInteractor, MixedReality.Toolkit.Core
       objectReference: {fileID: 0}
     - target: {fileID: 5572466351762964349, guid: c25d8f2d22117bd40ad824684551fbde, type: 3}
       propertyPath: isGrabSelected.onExited.m_PersistentCalls.m_Calls.Array.size
@@ -6492,6 +6556,18 @@ PrefabInstance:
       value: RestartButton
       objectReference: {fileID: 0}
     - target: {fileID: 2205755683005496796, guid: 21403ac052435804b917421e2e2ead78, type: 3}
+      propertyPath: disabledInteractorTypes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2205755683005496796, guid: 21403ac052435804b917421e2e2ead78, type: 3}
+      propertyPath: disabledInteractorTypes.Array.data[1].reference
+      value: MixedReality.Toolkit.IGazeInteractor, MixedReality.Toolkit.Core
+      objectReference: {fileID: 0}
+    - target: {fileID: 2205755683005496796, guid: 21403ac052435804b917421e2e2ead78, type: 3}
+      propertyPath: disabledInteractorTypes.Array.data[2].reference
+      value: MixedReality.Toolkit.IGazePinchInteractor, MixedReality.Toolkit.Core
+      objectReference: {fileID: 0}
+    - target: {fileID: 2205755683005496796, guid: 21403ac052435804b917421e2e2ead78, type: 3}
       propertyPath: isGrabSelected.onExited.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -6813,110 +6889,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SAButton
       objectReference: {fileID: 0}
-    - target: {fileID: 6446691403315646758, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-      propertyPath: isGrabSelected.onExited.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6446691403315646758, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-      propertyPath: isGrabSelected.onEntered.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6446691403315646758, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-      propertyPath: isGrabSelected.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6446691403315646758, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-      propertyPath: isGrabSelected.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6446691403315646758, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-      propertyPath: isGrabSelected.onEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6446691403315646758, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-      propertyPath: isGrabSelected.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 6563630625758415596}
-    - target: {fileID: 6446691403315646758, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-      propertyPath: isGrabSelected.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 6563630625758415596}
-    - target: {fileID: 6446691403315646758, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-      propertyPath: isGrabSelected.onEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 6563630625758415595}
-    - target: {fileID: 6446691403315646758, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-      propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 6563630625758415595}
-    - target: {fileID: 6446691403315646758, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-      propertyPath: isGrabSelected.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6446691403315646758, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-      propertyPath: isGrabSelected.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6446691403315646758, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-      propertyPath: isGrabSelected.onEntered.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6446691403315646758, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-      propertyPath: isGrabSelected.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PlayOneShot
-      objectReference: {fileID: 0}
-    - target: {fileID: 6446691403315646758, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-      propertyPath: isGrabSelected.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PlayOneShot
-      objectReference: {fileID: 0}
-    - target: {fileID: 6446691403315646758, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-      propertyPath: isGrabSelected.onEntered.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: fixAreaPosition
-      objectReference: {fileID: 0}
-    - target: {fileID: 6446691403315646758, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-      propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: fixAreaPosition
-      objectReference: {fileID: 0}
-    - target: {fileID: 6446691403315646758, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-      propertyPath: isGrabSelected.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.AudioSource, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6446691403315646758, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-      propertyPath: isGrabSelected.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.AudioSource, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6446691403315646758, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-      propertyPath: isGrabSelected.onEntered.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: SetArea, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6446691403315646758, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-      propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: SetArea, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6446691403315646758, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-      propertyPath: isGrabSelected.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 8300000, guid: 40ae713ddf420714bbc1a3b5c3f2eac1, type: 3}
-    - target: {fileID: 6446691403315646758, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-      propertyPath: isGrabSelected.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 8300000, guid: 291bf9326e517b0489c2ee53d0a6a63f, type: 3}
-    - target: {fileID: 6446691403315646758, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-      propertyPath: isGrabSelected.onExited.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.AudioClip, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6446691403315646758, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-      propertyPath: isGrabSelected.onEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.AudioClip, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6446691403315646758, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-      propertyPath: isGrabSelected.onEntered.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 6446691403315646758, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-      propertyPath: <OnClicked>k__BackingField.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6934,22 +6906,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
---- !u!114 &6563630625758415595 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3657876802226749084, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-  m_PrefabInstance: {fileID: 6563630625758415594}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1788072096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7dfd6a924030503449170f90a8bf2b11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!82 &6563630625758415596 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 3639179892945644542, guid: b5be75c94ad2d7346ad8c4e6be12b303, type: 3}
-  m_PrefabInstance: {fileID: 6563630625758415594}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6563630625758415597
 MonoBehaviour:
   m_ObjectHideFlags: 0

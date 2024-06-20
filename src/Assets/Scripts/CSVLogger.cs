@@ -40,7 +40,7 @@ namespace holoutils
             " pm s1 roundWatched, pm s2 roundWatched, pm s3 roundWatched, p1 s1 roundWatched, p1 s2 roundWatched, p1 s3 roundWatched, p2 s1 roundWatched, p2 s2 roundWatched, p2 s3 roundWatched," +
             " pm s1 roundCount, pm s2 roundCount, pm s3 roundCount, p1 s1 roundCount, p1 s2 roundCount, p1 s3 roundCount, p2 s1 roundCount, p2 s2 roundCount, p2 s3 roundCount";
         /// <summary>
-        /// p totWatchingS : time user p spent looking at spehre since de beginning
+        /// p totWatchingS : time user p spent looking at spehre since the beginning
         /// p s roundWatched : time sphere s has been watched by user p during the round
         /// p s roundCount : number of time sphere s has been watched by user p during the round
         /// </summary>
@@ -82,7 +82,7 @@ namespace holoutils
         async Task MakeNewSession()
         {
             m_sessionId = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-            Debug.Log("Hello: " + m_sessionId);
+            //Debug.Log("Hello: " + m_sessionId);
             string rootPath = "";
 #if WINDOWS_UWP
             StorageFolder sessionParentFolder = await KnownFolders.DocumentsLibrary
@@ -95,28 +95,29 @@ namespace holoutils
 #endif
             m_sessionPath = rootPath;
             Directory.CreateDirectory(rootPath);
-            Debug.Log("CSVLogger logging data to " + m_sessionPath);
+            //Debug.Log("CSVLogger logging data to " + m_sessionPath);
         }
 
         // called at the beginning of the game, before logging data
         public void StartNewCSV(int sceneNumber)
         {
-            Debug.Log("start of the StartNewCSV");
+            //Debug.Log("start of the StartNewCSV");
             m_recordingId = DateTime.Now.ToString("yyyyMMdd_HHmmssfff");
-            Debug.Log("recordingId has been done");
+            //Debug.Log("recordingId has been done");
             var filename = m_recordingId + "-" + scene + "-" + DataSuffix + ".csv";
-            Debug.Log("filename was created");
+            //Debug.Log("filename was created");
             m_filePath = Path.Combine(m_sessionPath, filename);
-            Debug.Log("m_filePath has been updated");
+            //Debug.Log("m_filePath has been updated");
             if (m_csvData != null)
             {
+                Debug.Log("StartNewCSV: m_csvData...");
                 EndCSV();
             }
             m_csvData = new StringBuilder();
-            if (sceneNumber == 1)
-            {
-                m_csvData.AppendLine(CSVHeader1);
-             }
+            //if (sceneNumber == 1)
+            //{
+            m_csvData.AppendLine(CSVHeader1);
+             //}
         //if (sceneNumber == 2)
         ////else
         //{
@@ -133,6 +134,7 @@ namespace holoutils
             }
             using (var csvWriter = new StreamWriter(m_filePath, true))
             {
+                Debug.Log("EndCSV: m_csvData...");
                 csvWriter.Write(m_csvData.ToString());
                 csvWriter.Close();
             }
@@ -142,7 +144,7 @@ namespace holoutils
 
         public void OnDestroy()
         {
-            Debug.Log("destroy");
+            //Debug.Log("destroy");
             EndCSV();
         }
 

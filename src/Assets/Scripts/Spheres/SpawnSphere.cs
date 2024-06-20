@@ -139,14 +139,13 @@ public class SpawnSphere : SpawnSphereInterface
             for (int i = 0; i < parentObject.transform.childCount; i++)
             {
                 Transform child = parentObject.transform.GetChild(i);
-                Debug.Log("Child " + i + ": " + child.name);
                 if (child.name == "demoSpheres" || child.name == "CrosshairDemo")
                 {
                     Debug.Log("Doing nothing");
                 }
                 else
                 {
-                    child.GetComponent<Pop>().GetComponent<PhotonView>().RPC("addIdleCursor", RpcTarget.All);
+                    child.GetComponent<Pop>().GetComponent<PhotonView>().RPC("addIdleCursor", RpcTarget.Others);
 
                 }
             }
@@ -194,7 +193,7 @@ public class SpawnSphere : SpawnSphereInterface
         //add Cursor On Object if Visu activated
         if (SceneConfig.useVisualizations)
         {
-            gameArea.GetComponent<PhotonView>().RPC("addCursorAndOutlineOnObjects", RpcTarget.All, pos);
+            gameArea.GetComponent<PhotonView>().RPC("addCursorAndOutlineOnObjects", RpcTarget.Others, pos);
 
         }
     }
@@ -458,27 +457,37 @@ public class SpawnSphere : SpawnSphereInterface
     [PunRPC]
     public void removeCursorAndOutlineOnObjects(int pos)
     {
-        spheresArray[pos].GetComponent<Pointer>().enabled = false;
-        spheresArray[pos].GetComponent<Pointer>().hitPointDisplayer.SetActive(false);
-        spheresArray[pos].GetComponent<SigmoidVisualization>().enabled = false;
-        spheresArray[pos].GetComponent<MeshOutline>().OutlineMaterial.color = new Color(outlineOriginalColor.r, outlineOriginalColor.g, outlineOriginalColor.b, 0.0f);
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            spheresArray[pos].GetComponent<Pointer>().enabled = false;
+            spheresArray[pos].GetComponent<Pointer>().hitPointDisplayer.SetActive(false);
+            spheresArray[pos].GetComponent<SigmoidVisualization>().enabled = false;
+            spheresArray[pos].GetComponent<MeshOutline>().OutlineMaterial.color = new Color(outlineOriginalColor.r, outlineOriginalColor.g, outlineOriginalColor.b, 0.0f);
+        }
         spheresArray[pos].SetActive(false);
     }
 
     [PunRPC]
     public void removeONLYCursorAndOutlineOnObjects(int pos)
     {
-        spheresArray[pos].GetComponent<Pointer>().enabled = false;
-        spheresArray[pos].GetComponent<Pointer>().hitPointDisplayer.SetActive(false);
-        spheresArray[pos].GetComponent<SigmoidVisualization>().enabled = false;
-        spheresArray[pos].GetComponent<MeshOutline>().OutlineMaterial.color = new Color(outlineOriginalColor.r, outlineOriginalColor.g, outlineOriginalColor.b, 0.0f);
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            spheresArray[pos].GetComponent<Pointer>().enabled = false;
+            spheresArray[pos].GetComponent<Pointer>().hitPointDisplayer.SetActive(false);
+            spheresArray[pos].GetComponent<SigmoidVisualization>().enabled = false;
+            spheresArray[pos].GetComponent<MeshOutline>().OutlineMaterial.color = new Color(outlineOriginalColor.r, outlineOriginalColor.g, outlineOriginalColor.b, 0.0f);
+        }
     }
+       
 
     [PunRPC]
 
     public void updateOutline(int pos, float intensity)
     {
-        spheresArray[pos].GetComponent<MeshOutline>().OutlineMaterial.color = new Color(outlineOriginalColor.r, outlineOriginalColor.g, outlineOriginalColor.b, intensity);
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            spheresArray[pos].GetComponent<MeshOutline>().OutlineMaterial.color = new Color(outlineOriginalColor.r, outlineOriginalColor.g, outlineOriginalColor.b, intensity);
+        }
     }
 
     [PunRPC]
@@ -486,15 +495,76 @@ public class SpawnSphere : SpawnSphereInterface
     {
         int actorNumber = info.Sender.ActorNumber - 1;
 
-        Debug.Log("Time before: " + gazeTimes[actorNumber]);
+        //Debug.Log("Time before: " + gazeTimes[actorNumber]);
         gazeTimes[actorNumber] = gazeTimes[actorNumber] + gazeTimeUpdate;
-        Debug.Log("Time AFTER: " + gazeTimes[actorNumber]);
+        //Debug.Log("Time AFTER: " + gazeTimes[actorNumber]);
 
         // create new interraction and add it to the list
         GazeInteraction newInteraction = new GazeInteraction(actorNumber, pos, gazeTimeUpdate, gazeTimeIN);
         gazeInteractions.Add(newInteraction);
 
-        Debug.Log("New Interaction - UserID: " + actorNumber + ", SphereID: " + pos + ", TimeSpent: " + gazeTimeUpdate + ", StartTime: " + gazeTimeIN);
+        //Debug.Log("New Interaction - UserID: " + actorNumber + ", SphereID: " + pos + ", TimeSpent: " + gazeTimeUpdate + ", StartTime: " + gazeTimeIN);
+    }
+
+    [PunRPC]
+    public void sendDataAtLast()
+    {
+        Debug.Log("yo me is in sendDataAtLast");
+
+        // data to store in CSV file
+        data.Add("END".ToString());
+        data.Add("-1".ToString());
+        foreach (GameObject s in activeSpheres)
+        {
+            data.Add(s.GetComponent<Pop>().id.ToString());
+            data.Add(sizeMap[s.transform.localScale.x]);
+            data.Add(s.GetComponent<Renderer>().material.name.Split()[0]);
+        }
+        data.Add("END".ToString());
+
+        data.Add("END".ToString());
+        data.Add("END".ToString());
+        data.Add("END".ToString());
+
+        //time spent by specific user watching at spheres since the BEGINNING
+        for (int i = 0; i < 3; i++)
+        {
+            data.Add(gazeTimes[i].ToString("F2"));
+        }
+
+        //time spent watching this specific sphere per user during the ROUND
+        for (int i = 0; i < 3; i++)
+        {
+            List<GazeInteraction> interractionPerUser = gazeInteractions.FindAll(interaction => interaction.UserId == i);
+            foreach (GameObject s in activeSpheres)
+            {
+                List<GazeInteraction> interactions = interractionPerUser.FindAll(interaction => interaction.SphereId == s.GetComponent<Pop>().id);
+
+                float totalTimeOnSphere = 0.0f;
+                foreach (GazeInteraction interaction in interactions)
+                {
+                    totalTimeOnSphere += interaction.TimeSpent;
+                }
+                data.Add(totalTimeOnSphere.ToString("F2"));
+            }
+
+        }
+
+        //number of time each user look at each sphere during the ROUND 
+        for (int i = 0; i < 3; i++)
+        {
+            List<GazeInteraction> interractionPerUser = gazeInteractions.FindAll(interaction => interaction.UserId == i);
+            foreach (GameObject s in activeSpheres)
+            {
+                List<GazeInteraction> interactions = interractionPerUser.FindAll(interaction => interaction.SphereId == s.GetComponent<Pop>().id);
+                data.Add(interactions.Count.ToString("F2"));
+            }
+
+        }
+        // add row to CSV and upadte variables for next logging
+        logger.AddRow(data);
+        data.Clear();
+        Debug.Log("yo me is in sendDataAtLast THIS IS THE END");
     }
     #endregion
 }

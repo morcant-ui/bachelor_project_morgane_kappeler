@@ -66,7 +66,7 @@ public abstract class Pop : MonoBehaviour
     public void IncrementDemo()
     {
         sphere = gameObject;
-        Debug.Log("Here is my name in incrementing: " + sphere.name);
+        //Debug.Log("Here is my name in incrementing: " + sphere.name);
         sphereMaterial = sphere.GetComponent<Renderer>().material;
         sphereColor = sphereMaterial.color;
         sphereMaterial.color = new Color(sphereColor.r - amountToDecrease, sphereColor.g - amountToDecrease, sphereColor.b - amountToDecrease, 255f);
@@ -106,7 +106,7 @@ public abstract class Pop : MonoBehaviour
 
     [PunRPC]
     public void addIdleCursor() {       
-        Debug.Log("Activate Idle Cursor");
+        //Debug.Log("Activate Idle Cursor");
         GameObject idleCursorPrefab = this.transform.parent.GetComponent<SpawnSphere>().IdleCursorPrefab;
         GameObject idleCrosshair = Instantiate(idleCursorPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         idleCrosshair.AddComponent<IdlePointer>();
@@ -122,19 +122,23 @@ public abstract class Pop : MonoBehaviour
     [PunRPC]
     public void destroyIdleCursors()
     {
-        GameObject[] idleCrosshairs = GameObject.FindGameObjectsWithTag("IdleCrosshair");
-        if (idleCrosshairs.Length > 0)
+        if (!PhotonNetwork.IsMasterClient)
         {
-            Debug.Log("Destroying all Idle Cursors");
-            foreach (GameObject idleCrosshair in idleCrosshairs)
+            GameObject[] idleCrosshairs = GameObject.FindGameObjectsWithTag("IdleCrosshair");
+            if (idleCrosshairs.Length > 0)
             {
-                Destroy(idleCrosshair);
+                //Debug.Log("Destroying all Idle Cursors");
+                foreach (GameObject idleCrosshair in idleCrosshairs)
+                {
+                    Destroy(idleCrosshair);
+                }
+            }
+            else
+            {
+                Debug.LogWarning("No idle cursors found to destroy.");
             }
         }
-        else
-        {
-            Debug.LogWarning("No idle cursors found to destroy.");
-        }
+        
     }
     #endregion
 }

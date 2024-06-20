@@ -27,7 +27,7 @@ public class GazeVisualizer : MonoBehaviour
     #region Public Fields
     // Parameters to control speed of intensity change
     public float increase = 1.0f;
-    public float decrease = 0.5f;
+    public float decrease = 0.75f;
     public float intensity = 1.0f;
 
     
@@ -42,7 +42,7 @@ public class GazeVisualizer : MonoBehaviour
         //gameObject.GetComponent<MeshOutline>().enabled = true;
         //material = gameObject.GetComponent<MeshOutline>().OutlineMaterial;
         outlineMaterial.color = new Color(color.r, color.g, color.b, 0.0f);
-        Debug.Log("Me is sigmoid, I should start with" + outlineMaterial.name + "and color: " + outlineMaterial.color + "on " + gameObject.name);
+        //Debug.Log("Me is sigmoid, I should start with" + outlineMaterial.name + "and color: " + outlineMaterial.color + "on " + gameObject.name);
     }
 
     // Update is called once per frame
@@ -50,14 +50,14 @@ public class GazeVisualizer : MonoBehaviour
     {
         if (watching)
         {
-            float fixationDuration = Time.time - fixationStart;
+            float fixationDuration = GameObject.Find("Timer").GetComponent<Timer>().timeRemaining - fixationStart;
             float targetIntensity = CalculateSigmoid(fixationDuration);
             currIntensity = Mathf.Lerp(currIntensity, targetIntensity, Time.deltaTime * increase);
-            Debug.Log("Im updating with intensity : " + currIntensity);
+            //Debug.Log("Im updating with intensity : " + currIntensity);
         }
         else
         {
-            float fixationDuration = Time.time - fixationEnd;
+            float fixationDuration = GameObject.Find("Timer").GetComponent<Timer>().timeRemaining - fixationEnd;
             currIntensity = Mathf.Lerp(currIntensity, 0, Time.deltaTime * decrease);
         }
         //outlineMaterial.color = new Color(color.r, color.g, color.b, currIntensity); //own's gaz
@@ -79,11 +79,13 @@ public class GazeVisualizer : MonoBehaviour
     public void Increment()
     {
         watching = true;
+        fixationStart = GameObject.Find("Timer").GetComponent<Timer>().timeRemaining;
     }
 
     public void Decrement()
     {
         watching = false;
+        fixationEnd = GameObject.Find("Timer").GetComponent<Timer>().timeRemaining;
     }
 
     #endregion

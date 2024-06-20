@@ -40,13 +40,13 @@ public class Timer : MonoBehaviour
         // gets the text object for displaying the time left and displays the time
         timeText = GameObject.Find("TimeText").GetComponent<TMPro.TextMeshProUGUI>();
         this.DisplayTime(timeRemaining);
-        Debug.Log("Hello ME is timer, I started the time");
+        //Debug.Log("Hello ME is timer, I started the time");
 
         // stores the logger component in a variable for later usage
         logger = this.GetComponent<CSVLogger>();
 
         // Additional log to confirm Start method is completed
-        Debug.Log("Timer Start method completed.");
+        //Debug.Log("Timer Start method completed.");
 
     }
 
@@ -56,7 +56,7 @@ public class Timer : MonoBehaviour
     public void startTimer()
     {
         timerIsRunning = true;
-        Debug.Log("Timer started via RPC.");
+        //Debug.Log("Timer started via RPC.");
     }
 
 
@@ -81,21 +81,20 @@ public class Timer : MonoBehaviour
                 SpawnSphereInterface spheresScript = gameArea.GetComponent<SpawnSphereInterface>();
                 foreach (GameObject sphere in spheresScript.activeSpheres)
                 {
-                    if (SceneConfig.useVisualizations)
+                    if (SceneConfig.useVisualizations && PhotonNetwork.IsMasterClient)
                     {
                         gameArea.GetComponent<PhotonView>().RPC("removeONLYCursorAndOutlineOnObjects", RpcTarget.All, sphere.GetComponent<Pop>().id);
                     }
                     
                 }
                 //disable idlecursor at the end 
-                if (SceneConfig.useVisualizations)
+                if (SceneConfig.useVisualizations && PhotonNetwork.IsMasterClient)
                 {
                     //gameArea.transform.GetChild(0).GetComponent<Pop>().GetComponent<PhotonView>().RPC("destroyIdleCursors", RpcTarget.All);
                     //GameObject parentObject = this.gameObject;
                     for (int i = 0; i < gameArea.transform.childCount; i++)
                     {
                         Transform child = gameArea.transform.GetChild(i);
-                        Debug.Log("Child " + i + ": " + child.name);
                         if (child.name == "demoSpheres" || child.name == "CrosshairDemo")
                         {
                             Debug.Log("Doing nothing");
@@ -107,6 +106,12 @@ public class Timer : MonoBehaviour
                         }
                     }
                 }
+
+                if (PhotonNetwork.IsMasterClient)
+                {
+                    gameArea.GetComponent<SpawnSphere>().GetComponent<PhotonView>().RPC("sendDataAtLast", RpcTarget.MasterClient);
+                }
+                
 
                 // disables the area, gets the number of popped spheres
                 gameArea.SetActive(false);
@@ -142,7 +147,7 @@ public class Timer : MonoBehaviour
         // the master also stores the data in a CSV file on the headset (under Documents, CSVLogger)
         if (PhotonNetwork.IsMasterClient)
         {
-            Debug.Log("Master makes a csv");
+            //Debug.Log("Master makes a csv");
             // saves data
             logger.FlushData();
             // clears data variable used to store data in the Create Spheres script

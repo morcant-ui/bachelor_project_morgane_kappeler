@@ -8,7 +8,7 @@ public class DemoPop : Pop
     override
     public void dualTouch(float time, PhotonMessageInfo info)
     {
-        Debug.Log("YOOOO I entered the dualTouch in the Demo guyss");
+       
         touchTimes[info.Sender.ActorNumber - 1] = time;
 
         // the info.Sender is the player who called the RPC.

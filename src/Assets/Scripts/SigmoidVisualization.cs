@@ -24,7 +24,7 @@ public class SigmoidVisualization : MonoBehaviour
     #region Public Fields
     // Parameters to control speed of intensity change
     public float increaseSpeed = 1.0f;
-    public float decreaseSpeed = 0.5f;
+    public float decreaseSpeed = 0.75f;
     public float maxIntensity = 1.0f;
 
     private Color originalColor;
@@ -46,13 +46,13 @@ public class SigmoidVisualization : MonoBehaviour
     {
         if (isWatched)
         {
-            float fixationDuration = Time.time - fixationStartTime;
+            float fixationDuration = GameObject.Find("Timer").GetComponent<Timer>().timeRemaining - fixationStartTime;
             float targetIntensity = CalculateSigmoidIntensity(fixationDuration);
             currentIntensity = Mathf.Lerp(currentIntensity, targetIntensity, Time.deltaTime * increaseSpeed);
         }
         else
         {
-            float fixationDuration = Time.time - fixationEndTime;
+            float fixationDuration = GameObject.Find("Timer").GetComponent<Timer>().timeRemaining - fixationEndTime;
             currentIntensity = Mathf.Lerp(currentIntensity, 0, Time.deltaTime * decreaseSpeed);
         }
         //outlineMaterial.color = new Color(originalColor.r, originalColor.g, originalColor.b, currentIntensity); //own's gaze
@@ -73,11 +73,13 @@ public class SigmoidVisualization : MonoBehaviour
     public void Increment()
     {
         isWatched = true;
+        fixationStartTime = GameObject.Find("Timer").GetComponent<Timer>().timeRemaining;
     }
 
     public void Decrement()
     {
         isWatched = false;
+        fixationEndTime = GameObject.Find("Timer").GetComponent<Timer>().timeRemaining;
     }
 
     #endregion

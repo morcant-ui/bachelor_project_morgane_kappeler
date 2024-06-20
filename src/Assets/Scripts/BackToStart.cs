@@ -1,8 +1,6 @@
-using Microsoft.MixedReality.Toolkit.Utilities;
 using Photon.Pun;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class BackToStart : MonoBehaviourPunCallbacks
 {
@@ -37,7 +35,19 @@ public class BackToStart : MonoBehaviourPunCallbacks
         //disable idlecursor at the end 
         if (SceneConfig.useVisualizations)
         {
-            gameArea.transform.GetChild(0).GetComponent<Pop>().GetComponent<PhotonView>().RPC("destroyIdleCursors", RpcTarget.All);
+            for (int i = 0; i < gameArea.transform.childCount; i++)
+            {
+                Transform child = gameArea.transform.GetChild(i);
+                if (child.name == "demoSpheres" || child.name == "CrosshairDemo")
+                {
+                    Debug.Log("Doing nothing");
+                }
+                else
+                {
+                    child.GetComponent<Pop>().GetComponent<PhotonView>().RPC("destroyIdleCursors", RpcTarget.All);
+
+                }
+            }
         }
         //GameObject.Find("CanvasLoading").transform.GetChild(0).gameObject.SetActive(true);
         StartCoroutine(wait());
