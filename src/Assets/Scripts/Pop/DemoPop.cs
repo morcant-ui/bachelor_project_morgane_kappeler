@@ -43,6 +43,7 @@ public class DemoPop : Pop
             if (PhotonNetwork.IsMasterClient)
             {
                 this.GetComponent<PhotonView>().RPC("deActivateSphere", RpcTarget.All);
+                this.transform.parent.GetComponent<T1Demo>().GetComponent<PhotonView>().RPC("nextSphere", RpcTarget.All);
             }
             this.GetComponent<MeshOutline>().OutlineWidth = 0f;
             this.GetComponent<PointerDemo>().enabled = false;

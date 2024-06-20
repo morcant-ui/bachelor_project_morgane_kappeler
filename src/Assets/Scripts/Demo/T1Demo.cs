@@ -6,9 +6,17 @@ public class T1Demo : Demo
 {
     [SerializeField]
     GameObject crosshair;
+
+    private int counter;
+
+    private void Start()
+    {
+        counter = 0;
+    }
     void Update()
     {   // if the demo was on and all children are disabled the demo ends
-        if (allChildrenOff() && demoOn)
+        //if (allChildrenOff() && demoOn)
+        if(counter >= 6 && demoOn)
         {
             if (PhotonNetwork.IsMasterClient)
             {
@@ -33,11 +41,15 @@ public class T1Demo : Demo
     public override void startDemo()
     {
         demoOn = true;
+        int i = 0;
         foreach (Transform sphere in this.gameObject.transform)
         {
             sphere.gameObject.GetComponent<MeshOutline>().OutlineWidth = 0.0f;
-
-            sphere.gameObject.SetActive(true);
+            if(i<3)
+            {
+                sphere.gameObject.SetActive(true);
+            }
+            i++;
             sphere.GetComponent<Pop>().myFlag = false;
             sphere.GetComponent<Pop>().otherFlag = false;
             sphere.GetComponent<Pop>().readyCount = 0;
@@ -48,6 +60,21 @@ public class T1Demo : Demo
             }
 
         }
+
+    }
+
+    [PunRPC]
+    public void nextSphere()
+    {
+        if (demoOn && counter <= 2)
+        {
+            GameObject parentObject = this.gameObject;
+            Transform child = parentObject.transform.GetChild(counter+3);
+            child.gameObject.SetActive(true);
+            
+        }
+        counter++;
+        Debug.Log("me is counter and me is : " + counter);
     }
 
     [PunRPC]

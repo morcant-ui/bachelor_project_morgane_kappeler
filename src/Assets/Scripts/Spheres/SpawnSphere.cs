@@ -496,6 +496,7 @@ public class SpawnSphere : SpawnSphereInterface
         int actorNumber = info.Sender.ActorNumber - 1;
 
         //Debug.Log("Time before: " + gazeTimes[actorNumber]);
+        Debug.Log("actor number is" + actorNumber);
         gazeTimes[actorNumber] = gazeTimes[actorNumber] + gazeTimeUpdate;
         //Debug.Log("Time AFTER: " + gazeTimes[actorNumber]);
 
