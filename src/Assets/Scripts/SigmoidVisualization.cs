@@ -1,5 +1,6 @@
 using Microsoft.MixedReality.GraphicsTools;
 using Photon.Pun;
+using System.Linq;
 using UnityEngine;
 
 public class SigmoidVisualization : MonoBehaviour
@@ -24,7 +25,7 @@ public class SigmoidVisualization : MonoBehaviour
     #region Public Fields
     // Parameters to control speed of intensity change
     public float increaseSpeed = 1.0f;
-    public float decreaseSpeed = 0.75f;
+    public float decreaseSpeed = 1.2f;
     public float maxIntensity = 1.0f;
 
     private Color originalColor;
@@ -36,7 +37,12 @@ public class SigmoidVisualization : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        outlineMaterial = GetComponent<MeshOutline>().OutlineMaterial;    
+        increaseSpeed = 1.0f;
+        decreaseSpeed = 1.2f;
+        maxIntensity = 1.0f;
+
+        //outlineMaterial = GetComponent<MeshOutline>().OutlineMaterial;
+        outlineMaterial = GetComponent<MeshRenderer>().materials.Last<Material>();
         outlineMaterial.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0.0f);
 
     }

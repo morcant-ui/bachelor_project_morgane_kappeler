@@ -1,5 +1,6 @@
 using Microsoft.MixedReality.GraphicsTools;
 using Photon.Pun;
+using System.Linq;
 using UnityEngine;
 
 public class GazeVisualizer : MonoBehaviour
@@ -21,14 +22,16 @@ public class GazeVisualizer : MonoBehaviour
     private float fixationEnd;
     private float currIntensity = 0f;
 
+    private Material outlineMaterialReal;
+
     private int id;
     #endregion
 
     #region Public Fields
     // Parameters to control speed of intensity change
-    public float increase = 1.0f;
-    public float decrease = 0.75f;
-    public float intensity = 1.0f;
+    private float increase = 1.0f;
+    private float decrease = 1.2f;
+    private float intensity = 1.0f;
 
     
     #endregion
@@ -37,11 +40,14 @@ public class GazeVisualizer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.GetComponent<MeshOutline>().OutlineMaterial = outlineMaterial;
+        increase = 1.0f;
+        decrease = 1.2f;
+        intensity = 1.0f;   
+
         gameObject.GetComponent<MeshOutline>().OutlineWidth = 0.01f;
-        //gameObject.GetComponent<MeshOutline>().enabled = true;
-        //material = gameObject.GetComponent<MeshOutline>().OutlineMaterial;
-        outlineMaterial.color = new Color(color.r, color.g, color.b, 0.0f);
+        gameObject.GetComponent<MeshOutline>().OutlineMaterial = outlineMaterial;
+        outlineMaterialReal = GetComponent<MeshRenderer>().materials.Last<Material>();
+        outlineMaterialReal.color = new Color(color.r, color.g, color.b, 0.0f);
         //Debug.Log("Me is sigmoid, I should start with" + outlineMaterial.name + "and color: " + outlineMaterial.color + "on " + gameObject.name);
     }
 
@@ -93,7 +99,7 @@ public class GazeVisualizer : MonoBehaviour
     [PunRPC]
     public void updateOutline(float intensity)
     {
-        outlineMaterial.color = new Color(outlineMaterial.color.r, outlineMaterial.color.g, outlineMaterial.color.b, intensity);
+        outlineMaterialReal.color = new Color(outlineMaterialReal.color.r, outlineMaterialReal.color.g, outlineMaterialReal.color.b, intensity);
     }
 }
 
