@@ -8,6 +8,7 @@ using Microsoft.MixedReality.GraphicsTools;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using MixedReality.Toolkit.Input;
+using System.Linq;
 
 
 public class SpawnSphere : SpawnSphereInterface
@@ -486,7 +487,7 @@ public class SpawnSphere : SpawnSphereInterface
     {
         if (!PhotonNetwork.IsMasterClient)
         {
-            spheresArray[pos].GetComponent<MeshOutline>().OutlineMaterial.color = new Color(outlineOriginalColor.r, outlineOriginalColor.g, outlineOriginalColor.b, intensity);
+            spheresArray[pos].GetComponent<MeshRenderer>().materials.Last<Material>().color = new Color(outlineOriginalColor.r, outlineOriginalColor.g, outlineOriginalColor.b, intensity);
         }
     }
 

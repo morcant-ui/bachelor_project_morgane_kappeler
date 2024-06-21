@@ -1436,6 +1436,14 @@ MonoBehaviour:
     active: 0
     onEntered:
       m_PersistentCalls:
+        m_Calls: []
+    onExited:
+      m_PersistentCalls:
+        m_Calls: []
+  isPokeHovered:
+    active: 0
+    onEntered:
+      m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 47627290}
           m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
@@ -1488,14 +1496,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  isPokeHovered:
-    active: 0
-    onEntered:
-      m_PersistentCalls:
-        m_Calls: []
-    onExited:
-      m_PersistentCalls:
-        m_Calls: []
   isActiveHovered:
     active: 0
     onEntered:
@@ -1504,8 +1504,7 @@ MonoBehaviour:
     onExited:
       m_PersistentCalls:
         m_Calls: []
-  disabledInteractorTypes:
-  - reference: MixedReality.Toolkit.IPokeInteractor, MixedReality.Toolkit.Core
+  disabledInteractorTypes: []
   <ToggleMode>k__BackingField: 0
   <SelectThreshold>k__BackingField: 0.9
   <DeselectThreshold>k__BackingField: 0.1
@@ -2983,6 +2982,14 @@ MonoBehaviour:
     active: 0
     onEntered:
       m_PersistentCalls:
+        m_Calls: []
+    onExited:
+      m_PersistentCalls:
+        m_Calls: []
+  isPokeHovered:
+    active: 0
+    onEntered:
+      m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 666181307}
           m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
@@ -3035,14 +3042,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  isPokeHovered:
-    active: 0
-    onEntered:
-      m_PersistentCalls:
-        m_Calls: []
-    onExited:
-      m_PersistentCalls:
-        m_Calls: []
   isActiveHovered:
     active: 0
     onEntered:
@@ -3051,8 +3050,7 @@ MonoBehaviour:
     onExited:
       m_PersistentCalls:
         m_Calls: []
-  disabledInteractorTypes:
-  - reference: MixedReality.Toolkit.IPokeInteractor, MixedReality.Toolkit.Core
+  disabledInteractorTypes: []
   <ToggleMode>k__BackingField: 0
   <SelectThreshold>k__BackingField: 0.9
   <DeselectThreshold>k__BackingField: 0.1
@@ -3648,6 +3646,14 @@ MonoBehaviour:
     active: 0
     onEntered:
       m_PersistentCalls:
+        m_Calls: []
+    onExited:
+      m_PersistentCalls:
+        m_Calls: []
+  isPokeHovered:
+    active: 0
+    onEntered:
+      m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1110598978}
           m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
@@ -3700,14 +3706,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  isPokeHovered:
-    active: 0
-    onEntered:
-      m_PersistentCalls:
-        m_Calls: []
-    onExited:
-      m_PersistentCalls:
-        m_Calls: []
   isActiveHovered:
     active: 0
     onEntered:
@@ -3716,8 +3714,7 @@ MonoBehaviour:
     onExited:
       m_PersistentCalls:
         m_Calls: []
-  disabledInteractorTypes:
-  - reference: MixedReality.Toolkit.IPokeInteractor, MixedReality.Toolkit.Core
+  disabledInteractorTypes: []
   <ToggleMode>k__BackingField: 0
   <SelectThreshold>k__BackingField: 0.9
   <DeselectThreshold>k__BackingField: 0.1
@@ -4509,6 +4506,14 @@ MonoBehaviour:
     active: 0
     onEntered:
       m_PersistentCalls:
+        m_Calls: []
+    onExited:
+      m_PersistentCalls:
+        m_Calls: []
+  isPokeHovered:
+    active: 0
+    onEntered:
+      m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1323996362}
           m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
@@ -4561,14 +4566,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  isPokeHovered:
-    active: 0
-    onEntered:
-      m_PersistentCalls:
-        m_Calls: []
-    onExited:
-      m_PersistentCalls:
-        m_Calls: []
   isActiveHovered:
     active: 0
     onEntered:
@@ -4577,8 +4574,7 @@ MonoBehaviour:
     onExited:
       m_PersistentCalls:
         m_Calls: []
-  disabledInteractorTypes:
-  - reference: MixedReality.Toolkit.IPokeInteractor, MixedReality.Toolkit.Core
+  disabledInteractorTypes: []
   <ToggleMode>k__BackingField: 0
   <SelectThreshold>k__BackingField: 0.9
   <DeselectThreshold>k__BackingField: 0.1
@@ -5422,6 +5418,14 @@ MonoBehaviour:
     active: 0
     onEntered:
       m_PersistentCalls:
+        m_Calls: []
+    onExited:
+      m_PersistentCalls:
+        m_Calls: []
+  isPokeHovered:
+    active: 0
+    onEntered:
+      m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1472202745}
           m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
@@ -5474,14 +5478,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  isPokeHovered:
-    active: 0
-    onEntered:
-      m_PersistentCalls:
-        m_Calls: []
-    onExited:
-      m_PersistentCalls:
-        m_Calls: []
   isActiveHovered:
     active: 0
     onEntered:
@@ -5490,8 +5486,7 @@ MonoBehaviour:
     onExited:
       m_PersistentCalls:
         m_Calls: []
-  disabledInteractorTypes:
-  - reference: MixedReality.Toolkit.IPokeInteractor, MixedReality.Toolkit.Core
+  disabledInteractorTypes: []
   <ToggleMode>k__BackingField: 0
   <SelectThreshold>k__BackingField: 0.9
   <DeselectThreshold>k__BackingField: 0.1
@@ -7435,6 +7430,14 @@ MonoBehaviour:
     active: 0
     onEntered:
       m_PersistentCalls:
+        m_Calls: []
+    onExited:
+      m_PersistentCalls:
+        m_Calls: []
+  isPokeHovered:
+    active: 0
+    onEntered:
+      m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1738762068}
           m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
@@ -7487,14 +7490,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  isPokeHovered:
-    active: 0
-    onEntered:
-      m_PersistentCalls:
-        m_Calls: []
-    onExited:
-      m_PersistentCalls:
-        m_Calls: []
   isActiveHovered:
     active: 0
     onEntered:
@@ -7503,8 +7498,7 @@ MonoBehaviour:
     onExited:
       m_PersistentCalls:
         m_Calls: []
-  disabledInteractorTypes:
-  - reference: MixedReality.Toolkit.IPokeInteractor, MixedReality.Toolkit.Core
+  disabledInteractorTypes: []
   <ToggleMode>k__BackingField: 0
   <SelectThreshold>k__BackingField: 0.9
   <DeselectThreshold>k__BackingField: 0.1
