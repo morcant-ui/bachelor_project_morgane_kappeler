@@ -6,7 +6,7 @@ This repository contains the source code of a project developed as part of a bac
 
 This project involved migrating an augmented reality collaborative game from MRTK2 to MRTK3 and creating two versions—one maintaining the original format and another integrating gaze visualizations through MRTK3's eye-tracking functionality. Selected based on a literature review, these visualizations aimed to enhance user interaction and efficiency. User tests revealed diverse behavioral patterns, including a prevalent leader-follower strategy. It also showed that the way users communicate and resolve the game can be influenced by the presence of gaze visualizations. The study highlights the potential of gaze visualizations to shape collaborative strategies and improve communication dynamics in augmented reality environments.
 
-## Installations requierements: 
+## Installation requierements: 
 
 - [Unity](https://unity.com/download) (version 2022.3.19f1)
 - [Visual Studio 2022](https://visualstudio.microsoft.com/vs/)
