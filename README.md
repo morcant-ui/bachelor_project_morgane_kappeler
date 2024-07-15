@@ -17,7 +17,7 @@ This project involves migrating an augmented reality collaborative game from MRT
 ```bash
 git clone [https://github.com/morcant-ui/bachelor_project_morgane_kappeler.git]
 ```
-3. Open Unity Hub and click on the `Add` button. Navigate to your local repository and select the `src` folder of the project. Unity will import the project files, which may take some time. During the import process, accept any dialogues or prompts that appear. There will be errors when the prokect is loaded, this is normal. Refer to the final section for additional setup instructions required to run the project.
+3. Open Unity Hub and click on the `Add` button. Navigate to your local repository and select the `src` folder of the project. Unity will import the project files, which may take some time. During the import process, accept any dialogues or prompts that appear. If prompted to enter safe mode, decline. There will be errors when the prokect is loaded, this is normal. Refer to the final section for additional setup instructions required to run the project. If errors persist after this, simply clearing the console should suffice.
 4. Open the Unity scene named "Starting Scene".
 5. To run the project in the Unity editor, click on the Play button (the arrow in the upper middle part of the window).
 
