@@ -4,7 +4,7 @@ This repository contains the source code of a project developed as part of a bac
 
 ## Project description: 
 
-This project involves migrating an augmented reality collaborative game from MRTK2 to MRTK3 and creating two versions, one maintaining the original format and another integrating gaze visualizations through MRTK3's eye-tracking functionality.These visualizations are selected based on a literature review, and aim to enhance the user interactions and their efficiency. User tests reveal diverse behavioral patterns, including a prevalent leader-follower strategy. It also shows the way users communicate and resolve the game can be influenced by the presence of gaze visualizations. The study highlights the potential of gaze visualizations to shape collaborative strategies and improve communication dynamics in augmented reality environments.
+This project involves migrating an augmented reality collaborative game from MRTK2 to MRTK3 and creating two versions, one maintaining the original format and another integrating gaze visualizations through MRTK3's eye-tracking functionality. These visualizations are selected based on a literature review and aim to enhance the user interactions and their efficiency. User tests reveal diverse behavioral patterns, including a prevalent leader-follower strategy. It also shows the way users communicate and resolve the game can be influenced by the presence of gaze visualizations. The study highlights the potential of gaze visualizations to shape collaborative strategies and improve communication dynamics in augmented reality environments.
 
 ## Installation requierements: 
 
